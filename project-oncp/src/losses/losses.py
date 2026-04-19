@@ -135,9 +135,6 @@ class NewnessLoss(nn.Module):
             energy_loss_out = energy.new_zeros(())
         energy_loss = energy_loss_in + energy_loss_out
 
-        # --- Prototype contrastive loss ----------------------------------
-        # Pull matched query toward its class's prototypes; push away from others.
-        # Uses the PAM projection space.
         q_feat = proto_feats[batch_idx, matched]                   # [B, P_dim]
         q_norm = F.normalize(q_feat, dim=-1)
         p_norm = F.normalize(prototypes, dim=-1)                   # [P, D]

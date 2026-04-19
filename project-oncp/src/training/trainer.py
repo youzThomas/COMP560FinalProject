@@ -130,9 +130,6 @@ class Trainer:
     @torch.no_grad()
     def evaluate(self, loader, tag: str = "val") -> dict[str, Any]:
         preds = collect_predictions(self.model, loader, self.device)
-        # Calibrate the newness threshold on the provided split so the report
-        # reflects the best achievable operating point rather than the config
-        # default (useful during training diagnostics).
         newness_thr = choose_newness_threshold(
             preds, target_unknown_precision=0.35,
             known_classes=self.known_classes,
