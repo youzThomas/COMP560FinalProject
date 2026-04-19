@@ -18,7 +18,6 @@ We assemble four terms, mirroring the report:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
 
 import torch
 import torch.nn as nn
@@ -74,6 +73,18 @@ class NewnessLossWeights:
     w_proto: float = 0.5
     m_in: float = -7.0
     m_out: float = -3.0
+    # Classification stabilizers.
+    cls_label_smoothing: float = 0.05
+    cls_focal_gamma: float = 1.5
+    # Objectness tuning: with Q queries there is 1 positive and (Q-1) negatives.
+    # A larger positive weight helps prevent known samples collapsing to background.
+    obj_pos_weight: float = 3.0
+    obj_focal_gamma: float = 2.0
+    # Energy stabilizers.
+    energy_hinge_power: float = 1.0
+    energy_rank_margin: float = 0.5
+    # Prototype contrastive temperature.
+    proto_temperature: float = 0.2
 
 
 class NewnessLoss(nn.Module):
@@ -115,12 +126,34 @@ class NewnessLoss(nn.Module):
 
         # --- Classification loss on the matched query --------------------
         matched_logits = class_logits[batch_idx, matched]          # [B, K]
-        cls_loss = F.cross_entropy(matched_logits, targets)
+        cls_ce = F.cross_entropy(
+            matched_logits,
+            targets,
+            reduction="none",
+            label_smoothing=float(self.w.cls_label_smoothing),
+        )
+        if self.w.cls_focal_gamma > 0.0:
+            pt = torch.exp(-cls_ce).clamp_min(1e-6)
+            cls_loss = ((1.0 - pt) ** float(self.w.cls_focal_gamma) * cls_ce).mean()
+        else:
+            cls_loss = cls_ce.mean()
 
         # --- Objectness loss (matched=1, rest=0) -------------------------
         obj_target = torch.zeros_like(obj_logits)
         obj_target[batch_idx, matched] = 1.0
-        obj_loss = F.binary_cross_entropy_with_logits(obj_logits, obj_target)
+        pos_w = obj_logits.new_tensor(float(self.w.obj_pos_weight))
+        obj_bce = F.binary_cross_entropy_with_logits(
+            obj_logits,
+            obj_target,
+            reduction="none",
+            pos_weight=pos_w,
+        )
+        if self.w.obj_focal_gamma > 0.0:
+            prob = torch.sigmoid(obj_logits)
+            pt = torch.where(obj_target > 0.5, prob, 1.0 - prob).clamp(1e-6, 1.0 - 1e-6)
+            obj_loss = (((1.0 - pt) ** float(self.w.obj_focal_gamma)) * obj_bce).mean()
+        else:
+            obj_loss = obj_bce.mean()
 
         # --- Energy margin loss ------------------------------------------
         matched_energy = energy[batch_idx, matched]
@@ -128,12 +161,21 @@ class NewnessLoss(nn.Module):
         mask[batch_idx, matched] = False
         unmatched_energy = energy[mask].view(B, Q - 1) if Q > 1 else energy.new_zeros(B, 0)
 
-        energy_loss_in = F.relu(matched_energy - self.w.m_in).pow(2).mean()
+        p = float(self.w.energy_hinge_power)
+        energy_loss_in = F.relu(matched_energy - self.w.m_in).pow(p).mean()
         if unmatched_energy.numel() > 0:
-            energy_loss_out = F.relu(self.w.m_out - unmatched_energy).pow(2).mean()
+            energy_loss_out = F.relu(self.w.m_out - unmatched_energy).pow(p).mean()
+            # Relative ranking: matched (known) energies should stay lower than unmatched.
+            energy_rank = F.relu(
+                float(self.w.energy_rank_margin)
+                + matched_energy.unsqueeze(1)
+                - unmatched_energy
+            ).mean()
         else:
             energy_loss_out = energy.new_zeros(())
-        energy_loss = energy_loss_in + energy_loss_out
+            energy_rank = energy.new_zeros(())
+        # Average absolute margins + add explicit ranking term.
+        energy_loss = 0.5 * (energy_loss_in + energy_loss_out) + energy_rank
 
         q_feat = proto_feats[batch_idx, matched]                   # [B, P_dim]
         q_norm = F.normalize(q_feat, dim=-1)
@@ -143,7 +185,8 @@ class NewnessLoss(nn.Module):
         # For each sample, positives = prototypes whose class == target.
         pos_mask = (class_ids.unsqueeze(0) == targets.unsqueeze(1))  # [B, P]
         # Softmax over prototypes, average negative log-likelihood across positives.
-        logits = sim / 0.1  # temperature
+        temp = max(1e-3, float(self.w.proto_temperature))
+        logits = sim / temp
         log_prob = logits - torch.logsumexp(logits, dim=-1, keepdim=True)
         pos_log_prob = (log_prob * pos_mask).sum(dim=-1) / pos_mask.sum(dim=-1).clamp_min(1)
         proto_loss = -pos_log_prob.mean()
@@ -161,6 +204,7 @@ class NewnessLoss(nn.Module):
             "obj": obj_loss.detach(),
             "energy_in": energy_loss_in.detach(),
             "energy_out": energy_loss_out.detach(),
+            "energy_rank": energy_rank.detach(),
             "proto": proto_loss.detach(),
         }
         return total, components, matched
