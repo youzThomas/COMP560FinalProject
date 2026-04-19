@@ -69,10 +69,11 @@ class HungarianMatcher(nn.Module):
 class NewnessLossWeights:
     w_class: float = 1.0
     w_objectness: float = 1.0
-    w_energy: float = 0.1
-    w_proto: float = 0.5
-    m_in: float = -7.0
-    m_out: float = -3.0
+    # Keep conservative defaults aligned with tuned server config.
+    w_energy: float = 0.02
+    w_proto: float = 0.25
+    m_in: float = -4.5
+    m_out: float = -2.0
     # Classification stabilizers.
     cls_label_smoothing: float = 0.0
     cls_focal_gamma: float = 0.0
