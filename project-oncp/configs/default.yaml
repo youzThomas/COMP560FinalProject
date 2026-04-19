@@ -47,12 +47,12 @@ training:
   # Loss weights
   w_class: 1.0
   w_objectness: 1.0
-  w_energy: 0.1
-  w_proto: 0.5
+  w_energy: 0.02
+  w_proto: 0.25
   # Energy margin loss: push known in-dist energy low and surrogate "unknown" (unmatched
   # queries / background) energy high.
-  energy_m_in: -7.0
-  energy_m_out: -3.0
+  energy_m_in: -4.5
+  energy_m_out: -2.0
   # Prototype EMA update momentum
   proto_ema: 0.9
   log_every: 20
