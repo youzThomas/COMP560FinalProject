@@ -76,6 +76,8 @@ class NewnessLossWeights:
     # Classification stabilizers.
     cls_label_smoothing: float = 0.0
     cls_focal_gamma: float = 0.0
+    # Mild per-batch class balancing for known-class CE (0 disables).
+    cls_balance_power: float = 0.5
     # Objectness tuning: with Q queries there is 1 positive and (Q-1) negatives.
     # A larger positive weight helps prevent known samples collapsing to background.
     obj_pos_weight: float = 1.5
@@ -83,6 +85,8 @@ class NewnessLossWeights:
     # Energy stabilizers.
     energy_hinge_power: float = 2.0
     energy_rank_margin: float = 0.0
+    # Compress very large energy penalties so CE/objectness can still optimize.
+    energy_log_compress: bool = True
     # Prototype contrastive temperature.
     proto_temperature: float = 0.1
 
@@ -126,10 +130,17 @@ class NewnessLoss(nn.Module):
 
         # --- Classification loss on the matched query --------------------
         matched_logits = class_logits[batch_idx, matched]          # [B, K]
+        cls_weight = None
+        if float(self.w.cls_balance_power) > 0.0:
+            counts = torch.bincount(targets, minlength=K).float()
+            inv = counts.sum() / counts.clamp_min(1.0)
+            # Normalize so average weight stays around 1.0.
+            cls_weight = (inv / inv.mean()).pow(float(self.w.cls_balance_power))
         cls_ce = F.cross_entropy(
             matched_logits,
             targets,
             reduction="none",
+            weight=cls_weight,
             label_smoothing=float(self.w.cls_label_smoothing),
         )
         if self.w.cls_focal_gamma > 0.0:
@@ -179,6 +190,8 @@ class NewnessLoss(nn.Module):
             energy_rank = energy.new_zeros(())
         # Average absolute margins + add explicit ranking term.
         energy_loss = 0.5 * (energy_loss_in + energy_loss_out) + energy_rank
+        if bool(self.w.energy_log_compress):
+            energy_loss = torch.log1p(energy_loss.clamp_min(0.0))
 
         q_feat = proto_feats[batch_idx, matched]                   # [B, P_dim]
         q_norm = F.normalize(q_feat, dim=-1)
