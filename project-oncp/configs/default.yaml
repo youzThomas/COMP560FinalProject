@@ -55,5 +55,8 @@ training:
   energy_m_out: -2.0
   # Prototype EMA update momentum
   proto_ema: 0.9
+  # Acceptance criteria targets (used by threshold selection and checkpoint scoring).
+  target_unknown_precision: 0.35
+  target_known_recall: 0.80
   log_every: 20
   ckpt_dir: runs/default

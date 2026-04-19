@@ -20,11 +20,11 @@ if str(_ROOT) not in sys.path:
 
 from src.data import build_dataloaders  # noqa: E402
 from src.evaluation import (  # noqa: E402
+    choose_operating_point,
     collect_predictions,
     openworld_report,
     sweep_thresholds,
 )
-from src.evaluation.metrics import choose_newness_threshold  # noqa: E402
 from src.models import NewnessTransformer  # noqa: E402
 from src.utils.config import load_config  # noqa: E402
 from src.utils.logging import get_logger  # noqa: E402
@@ -48,6 +48,8 @@ def main() -> None:
     logger = get_logger("oncp.eval")
     cfg = load_config(args.config)
     seed_everything(int(cfg.seed))
+    target_unknown_precision = float(cfg.training.get("target_unknown_precision", 0.35))
+    target_known_recall = float(cfg.training.get("target_known_recall", 0.80))
 
     loaders = build_dataloaders(cfg)
     cfg.model.in_channels = loaders["n_channels"]
@@ -79,18 +81,21 @@ def main() -> None:
     for s in splits:
         loader = loaders[f"{s}_loader"]
         preds = collect_predictions(model, loader, device)
-        newness_thr = choose_newness_threshold(
+        sel = choose_operating_point(
             preds,
-            target_unknown_precision=0.35,
+            target_unknown_precision=target_unknown_precision,
+            target_known_recall=target_known_recall,
             known_classes=loaders["known_classes"],
             obj_threshold=float(cfg.model.objectness_threshold),
         )
+        newness_thr = float(sel["newness_threshold"])
         rep = openworld_report(
             preds, loaders["known_classes"],
             obj_threshold=float(cfg.model.objectness_threshold),
             newness_threshold=newness_thr,
         )
         rep["tuned_newness_threshold"] = newness_thr
+        rep["threshold_selection_mode"] = str(sel["selection_mode"])
         out[s] = rep
         logger.info("[%s] %s", s, json.dumps(rep, indent=2, default=float))
 

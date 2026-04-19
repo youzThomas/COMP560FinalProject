@@ -174,17 +174,97 @@ def sweep_thresholds(
 def choose_newness_threshold(
     preds: dict[str, np.ndarray],
     target_unknown_precision: float = 0.35,
+    target_known_recall: float = 0.80,
     known_classes: list[int] | None = None,
     obj_threshold: float = 0.5,
 ) -> float:
-    """Pick the lowest newness threshold that meets ``target_unknown_precision``.
+    """Backward-compatible wrapper around criteria-aware operating-point search."""
+    sel = choose_operating_point(
+        preds=preds,
+        target_unknown_precision=target_unknown_precision,
+        target_known_recall=target_known_recall,
+        known_classes=known_classes,
+        obj_threshold=obj_threshold,
+    )
+    return float(sel["newness_threshold"])
 
-    Falls back to the median newness if the target is unreachable.
+
+def choose_operating_point(
+    preds: dict[str, np.ndarray],
+    target_unknown_precision: float = 0.35,
+    target_known_recall: float = 0.80,
+    known_classes: list[int] | None = None,
+    obj_threshold: float = 0.5,
+) -> dict[str, float | str | dict]:
+    """Select a newness threshold aligned with project acceptance criteria.
+
+    Priority:
+    1) satisfy both targets (known recall + unknown precision),
+    2) satisfy unknown-precision target and maximize known recall,
+    3) otherwise maximize a blended score favoring known recall.
     """
-    candidates = np.quantile(preds["newness"], np.linspace(0.05, 0.99, 40))
-    best = float(np.median(preds["newness"]))
+    known_classes = known_classes or []
+    candidates = np.unique(
+        np.quantile(preds["newness"], np.linspace(0.01, 0.995, 80))
+    )
+    if candidates.size == 0:
+        t = float(np.median(preds["newness"]))
+        rep = openworld_report(preds, known_classes, obj_threshold, t)
+        return {
+            "newness_threshold": t,
+            "selection_mode": "median_fallback",
+            "report": rep,
+        }
+
+    evaluated: list[tuple[float, dict]] = []
     for t in candidates:
-        rep = openworld_report(preds, known_classes or [], obj_threshold, float(t))
-        if not np.isnan(rep["unknown_precision"]) and rep["unknown_precision"] >= target_unknown_precision:
-            return float(t)
-    return best
+        rep = openworld_report(preds, known_classes, obj_threshold, float(t))
+        evaluated.append((float(t), rep))
+
+    def _safe(x: float) -> float:
+        return 0.0 if np.isnan(x) else float(x)
+
+    feasible_both = [
+        (t, r) for (t, r) in evaluated
+        if _safe(r["known_recall"]) >= target_known_recall
+        and _safe(r["unknown_precision"]) >= target_unknown_precision
+    ]
+    if feasible_both:
+        t, rep = max(
+            feasible_both,
+            key=lambda tr: (_safe(tr[1]["known_recall"]), _safe(tr[1]["unknown_precision"])),
+        )
+        return {
+            "newness_threshold": float(t),
+            "selection_mode": "meets_both_targets",
+            "report": rep,
+        }
+
+    feasible_precision = [
+        (t, r) for (t, r) in evaluated
+        if _safe(r["unknown_precision"]) >= target_unknown_precision
+    ]
+    if feasible_precision:
+        t, rep = max(
+            feasible_precision,
+            key=lambda tr: (_safe(tr[1]["known_recall"]), _safe(tr[1]["unknown_precision"])),
+        )
+        return {
+            "newness_threshold": float(t),
+            "selection_mode": "meets_precision_target",
+            "report": rep,
+        }
+
+    # Last resort: maximize blended score with stronger weight on known recall.
+    t, rep = max(
+        evaluated,
+        key=lambda tr: (
+            0.7 * _safe(tr[1]["known_recall"])
+            + 0.3 * _safe(tr[1]["unknown_precision"])
+        ),
+    )
+    return {
+        "newness_threshold": float(t),
+        "selection_mode": "blended_fallback",
+        "report": rep,
+    }

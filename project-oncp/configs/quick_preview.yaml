@@ -46,5 +46,7 @@ training:
   energy_m_in: -4.5
   energy_m_out: -2.0
   proto_ema: 0.9
+  target_unknown_precision: 0.35
+  target_known_recall: 0.80
   log_every: 10
   ckpt_dir: runs/quick_preview

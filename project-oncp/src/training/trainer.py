@@ -13,7 +13,7 @@ from torch.optim.lr_scheduler import LambdaLR
 from tqdm import tqdm
 
 from ..evaluation.metrics import (
-    choose_newness_threshold,
+    choose_operating_point,
     collect_predictions,
     openworld_report,
 )
@@ -53,6 +53,8 @@ class Trainer:
         self.grad_clip = float(tcfg.grad_clip)
         self.proto_ema = float(tcfg.proto_ema)
         self.log_every = int(tcfg.get("log_every", 20))
+        self.target_unknown_precision = float(tcfg.get("target_unknown_precision", 0.35))
+        self.target_known_recall = float(tcfg.get("target_known_recall", 0.80))
 
         self.loss_fn = NewnessLoss(
             weights=NewnessLossWeights(
@@ -130,11 +132,14 @@ class Trainer:
     @torch.no_grad()
     def evaluate(self, loader, tag: str = "val") -> dict[str, Any]:
         preds = collect_predictions(self.model, loader, self.device)
-        newness_thr = choose_newness_threshold(
-            preds, target_unknown_precision=0.35,
+        sel = choose_operating_point(
+            preds,
+            target_unknown_precision=self.target_unknown_precision,
+            target_known_recall=self.target_known_recall,
             known_classes=self.known_classes,
             obj_threshold=float(self.cfg.model.objectness_threshold),
         )
+        newness_thr = float(sel["newness_threshold"])
         rep = openworld_report(
             preds, self.known_classes,
             obj_threshold=float(self.cfg.model.objectness_threshold),
@@ -142,6 +147,7 @@ class Trainer:
         )
         rep["tag"] = tag
         rep["tuned_newness_threshold"] = newness_thr
+        rep["threshold_selection_mode"] = str(sel["selection_mode"])
         return rep
 
     def fit(self) -> dict[str, Any]:
@@ -149,12 +155,15 @@ class Trainer:
         for epoch in range(1, self.epochs + 1):
             train_stats = self._train_one_epoch(epoch)
             val_report = self.evaluate(self.val_loader, tag="val")
-            score = val_report["known_recall"] if not math.isnan(val_report["known_recall"]) else 0.0
-            if not math.isnan(val_report.get("auroc_newness", float("nan"))):
-                score = 0.5 * score + 0.5 * val_report["auroc_newness"]
+            known = 0.0 if math.isnan(val_report["known_recall"]) else float(val_report["known_recall"])
+            unk_prec = 0.0 if math.isnan(val_report["unknown_precision"]) else float(val_report["unknown_precision"])
+            score = known + 0.25 * unk_prec
+            # Penalize checkpoints that miss acceptance criteria.
+            score -= max(0.0, self.target_known_recall - known)
+            score -= 2.0 * max(0.0, self.target_unknown_precision - unk_prec)
             self.logger.info(
                 "epoch %03d | loss=%.3f cls=%.3f obj=%.3f proto=%.3f | "
-                "val known_rec=%.3f unk_prec=%.3f auroc=%.3f",
+                "val known_rec=%.3f unk_prec=%.3f auroc=%.3f sel=%s score=%.3f",
                 epoch,
                 train_stats.get("loss", 0.0),
                 train_stats.get("cls", 0.0),
@@ -163,6 +172,8 @@ class Trainer:
                 val_report["known_recall"],
                 val_report["unknown_precision"],
                 val_report.get("auroc_newness", float("nan")),
+                val_report.get("threshold_selection_mode", "n/a"),
+                score,
             )
             history.append({"epoch": epoch, "train": train_stats, "val": val_report})
 
