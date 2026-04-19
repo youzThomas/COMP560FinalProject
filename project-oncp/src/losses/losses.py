@@ -74,17 +74,17 @@ class NewnessLossWeights:
     m_in: float = -7.0
     m_out: float = -3.0
     # Classification stabilizers.
-    cls_label_smoothing: float = 0.05
-    cls_focal_gamma: float = 1.5
+    cls_label_smoothing: float = 0.0
+    cls_focal_gamma: float = 0.0
     # Objectness tuning: with Q queries there is 1 positive and (Q-1) negatives.
     # A larger positive weight helps prevent known samples collapsing to background.
-    obj_pos_weight: float = 3.0
-    obj_focal_gamma: float = 2.0
+    obj_pos_weight: float = 1.5
+    obj_focal_gamma: float = 0.0
     # Energy stabilizers.
-    energy_hinge_power: float = 1.0
-    energy_rank_margin: float = 0.5
+    energy_hinge_power: float = 2.0
+    energy_rank_margin: float = 0.0
     # Prototype contrastive temperature.
-    proto_temperature: float = 0.2
+    proto_temperature: float = 0.1
 
 
 class NewnessLoss(nn.Module):
@@ -165,12 +165,15 @@ class NewnessLoss(nn.Module):
         energy_loss_in = F.relu(matched_energy - self.w.m_in).pow(p).mean()
         if unmatched_energy.numel() > 0:
             energy_loss_out = F.relu(self.w.m_out - unmatched_energy).pow(p).mean()
-            # Relative ranking: matched (known) energies should stay lower than unmatched.
-            energy_rank = F.relu(
-                float(self.w.energy_rank_margin)
-                + matched_energy.unsqueeze(1)
-                - unmatched_energy
-            ).mean()
+            if float(self.w.energy_rank_margin) > 0.0:
+                # Relative ranking: matched (known) energies should stay lower than unmatched.
+                energy_rank = F.relu(
+                    float(self.w.energy_rank_margin)
+                    + matched_energy.unsqueeze(1)
+                    - unmatched_energy
+                ).mean()
+            else:
+                energy_rank = energy.new_zeros(())
         else:
             energy_loss_out = energy.new_zeros(())
             energy_rank = energy.new_zeros(())
