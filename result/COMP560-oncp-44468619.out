@@ -1,0 +1,95 @@
+Job 44468619: cwd=/work/users/d/y/dyy12/COMP-560/project-oncp python=/nas/longleaf/home/dyy12/.conda/envs/comp560/bin/python torch=2.5.1+cu121
+Job 44468619: /nas/longleaf/home/dyy12/.conda/envs/comp560/bin/python -u scripts/train.py --config configs/default.yaml
+[22:27:16][INFO] Seed: 42 | ckpt_dir: runs/default
+[22:27:16][INFO] Loading Mill dataset ...
+[22:27:17][INFO] Train/Val/Test sizes: 14994 / 4053 / 4053 (channels=6, window=64)
+[22:27:17][INFO] Class counts: {"train": {"0": 5978, "1": 9016}, "val": {"0": 1281, "1": 1932, "2": 840}, "test": {"0": 1281, "1": 1932, "2": 840}}
+[22:27:17][INFO] Device: cuda
+[22:27:17][INFO] Model parameters: 1.23M
+[22:27:27][INFO] epoch 001 | loss=2.237 cls=0.621 obj=0.339 proto=2.861 vos=0.000 | val known_rec=0.512 unk_prec=0.352 unk_rec=0.554 auroc=0.665 sel=meets_precision_target score=-0.307 | ema auroc=0.723 score=-0.508
+[22:27:34][INFO] epoch 002 | loss=0.826 cls=0.507 obj=0.007 proto=1.234 vos=0.000 | val known_rec=0.712 unk_prec=0.540 unk_rec=0.199 auroc=0.476 sel=meets_precision_target score=-0.142 | ema auroc=0.732 score=-0.855
+[22:27:41][INFO] epoch 003 | loss=0.769 cls=0.478 obj=0.001 proto=1.159 vos=0.000 | val known_rec=0.719 unk_prec=0.541 unk_rec=0.264 auroc=0.686 sel=meets_precision_target score=0.183 | ema auroc=0.732 score=-0.719
+[22:27:48][INFO] epoch 004 | loss=0.740 cls=0.457 obj=0.001 proto=1.128 vos=0.000 | val known_rec=0.480 unk_prec=0.350 unk_rec=0.731 auroc=0.737 sel=meets_precision_target score=-0.306 | ema auroc=0.716 score=-0.761
+[22:27:55][INFO] epoch 005 | loss=0.702 cls=0.429 obj=0.000 proto=1.091 vos=0.000 | val known_rec=0.721 unk_prec=0.360 unk_rec=0.198 auroc=0.705 sel=meets_precision_target score=0.025 | ema auroc=0.699 score=-0.852
+[22:28:02][INFO] epoch 006 | loss=0.690 cls=0.419 obj=0.000 proto=1.080 vos=0.000 | val known_rec=0.552 unk_prec=0.358 unk_rec=0.627 auroc=0.735 sel=meets_precision_target score=-0.092 | ema auroc=0.720 score=-0.606
+[22:28:09][INFO] epoch 007 | loss=0.670 cls=0.405 obj=0.000 proto=1.059 vos=0.000 | val known_rec=0.536 unk_prec=0.300 unk_rec=0.607 auroc=0.658 sel=blended_fallback score=-0.273 | ema auroc=0.757 score=-0.230
+[22:28:17][INFO] epoch 008 | loss=0.650 cls=0.389 obj=0.000 proto=1.043 vos=0.000 | val known_rec=0.804 unk_prec=0.391 unk_rec=0.108 auroc=0.646 sel=meets_known_and_precision score=0.046 | ema auroc=0.781 score=-0.144
+[22:28:24][INFO] epoch 009 | loss=0.630 cls=0.374 obj=0.000 proto=1.025 vos=0.000 | val known_rec=0.801 unk_prec=0.382 unk_rec=0.025 auroc=0.732 sel=meets_known_and_precision score=-0.079 | ema auroc=0.779 score=-0.306
+[22:28:31][INFO] epoch 010 | loss=0.631 cls=0.374 obj=0.000 proto=1.024 vos=0.000 | val known_rec=0.801 unk_prec=0.534 unk_rec=0.196 auroc=0.768 sel=meets_known_and_precision score=0.367 | ema auroc=0.773 score=-0.399
+[22:28:38][INFO] epoch 011 | loss=0.620 cls=0.366 obj=0.000 proto=1.016 vos=0.000 | val known_rec=0.801 unk_prec=0.388 unk_rec=0.119 auroc=0.698 sel=meets_known_and_precision score=0.110 | ema auroc=0.761 score=-0.384
+[22:28:45][INFO] epoch 012 | loss=0.610 cls=0.359 obj=0.000 proto=1.006 vos=0.000 | val known_rec=0.802 unk_prec=0.434 unk_rec=0.160 auroc=0.716 sel=meets_known_and_precision score=0.225 | ema auroc=0.746 score=-0.006
+[22:28:52][INFO] epoch 013 | loss=0.616 cls=0.363 obj=0.000 proto=1.012 vos=0.000 | val known_rec=0.803 unk_prec=0.465 unk_rec=0.213 auroc=0.770 sel=meets_known_and_precision score=0.397 | ema auroc=0.732 score=-0.123
+[22:28:59][INFO] epoch 014 | loss=0.606 cls=0.356 obj=0.000 proto=1.001 vos=0.000 | val known_rec=0.803 unk_prec=0.488 unk_rec=0.224 auroc=0.747 sel=meets_known_and_precision score=0.407 | ema auroc=0.720 score=-0.046
+[22:29:07][INFO] epoch 015 | loss=0.607 cls=0.356 obj=0.000 proto=1.003 vos=0.000 | val known_rec=0.801 unk_prec=0.417 unk_rec=0.204 auroc=0.746 sel=meets_known_and_precision score=0.348 | ema auroc=0.710 score=0.018
+[22:29:14][INFO] epoch 016 | loss=0.596 cls=0.348 obj=0.000 proto=0.991 vos=0.000 | val known_rec=0.800 unk_prec=0.431 unk_rec=0.171 auroc=0.738 sel=meets_known_and_precision score=0.269 | ema auroc=0.702 score=-0.009
+[22:29:21][INFO] epoch 017 | loss=0.590 cls=0.344 obj=0.000 proto=0.986 vos=0.000 | val known_rec=0.806 unk_prec=0.437 unk_rec=0.187 auroc=0.722 sel=meets_known_and_precision score=0.295 | ema auroc=0.696 score=0.001
+[22:29:28][INFO] epoch 018 | loss=0.584 cls=0.339 obj=0.000 proto=0.980 vos=0.000 | val known_rec=0.804 unk_prec=0.454 unk_rec=0.194 auroc=0.702 sel=meets_known_and_precision score=0.297 | ema auroc=0.694 score=0.032
+[22:29:35][INFO] epoch 019 | loss=0.582 cls=0.338 obj=0.000 proto=0.977 vos=0.000 | val known_rec=0.871 unk_prec=0.400 unk_rec=0.014 auroc=0.718 sel=meets_known_and_precision score=-0.084 | ema auroc=0.694 score=0.064
+[22:29:42][INFO] epoch 020 | loss=0.582 cls=0.337 obj=0.000 proto=0.977 vos=0.000 | val known_rec=0.814 unk_prec=0.354 unk_rec=0.194 auroc=0.711 sel=meets_known_and_precision score=0.294 | ema auroc=0.697 score=0.105
+[22:29:49][INFO] epoch 021 | loss=0.575 cls=0.332 obj=0.000 proto=0.970 vos=0.000 | val known_rec=0.803 unk_prec=0.440 unk_rec=0.242 auroc=0.717 sel=meets_known_and_precision score=0.417 | ema auroc=0.701 score=0.135
+[22:29:56][INFO] epoch 022 | loss=0.569 cls=0.328 obj=0.000 proto=0.965 vos=0.000 | val known_rec=0.510 unk_prec=0.297 unk_rec=0.673 auroc=0.661 sel=blended_fallback score=-0.343 | ema auroc=0.704 score=0.168
+[22:30:03][INFO] epoch 023 | loss=0.571 cls=0.329 obj=0.000 proto=0.967 vos=0.000 | val known_rec=0.802 unk_prec=0.362 unk_rec=0.155 auroc=0.700 sel=meets_known_and_precision score=0.191 | ema auroc=0.706 score=0.193
+[22:30:10][INFO] epoch 024 | loss=0.559 cls=0.320 obj=0.000 proto=0.954 vos=0.000 | val known_rec=0.581 unk_prec=0.351 unk_rec=0.700 auroc=0.712 sel=meets_precision_target score=0.007 | ema auroc=0.707 score=0.213
+[22:30:18][INFO] epoch 025 | loss=0.558 cls=0.319 obj=0.000 proto=0.955 vos=0.000 | val known_rec=0.645 unk_prec=0.337 unk_rec=0.551 auroc=0.688 sel=blended_fallback score=0.147 | ema auroc=0.709 score=0.245
+[22:30:25][INFO] epoch 026 | loss=0.561 cls=0.322 obj=0.000 proto=0.956 vos=0.000 | val known_rec=0.611 unk_prec=0.331 unk_rec=0.630 auroc=0.687 sel=blended_fallback score=0.047 | ema auroc=0.710 score=0.243
+[22:30:32][INFO] epoch 027 | loss=0.548 cls=0.312 obj=0.000 proto=0.944 vos=0.000 | val known_rec=0.611 unk_prec=0.330 unk_rec=0.599 auroc=0.677 sel=blended_fallback score=0.028 | ema auroc=0.710 score=0.251
+[22:30:39][INFO] epoch 028 | loss=0.546 cls=0.310 obj=0.000 proto=0.943 vos=0.000 | val known_rec=0.561 unk_prec=0.307 unk_rec=0.658 auroc=0.654 sel=blended_fallback score=-0.171 | ema auroc=0.707 score=0.194
+[22:30:46][INFO] epoch 029 | loss=0.540 cls=0.306 obj=0.000 proto=0.936 vos=0.000 | val known_rec=0.558 unk_prec=0.304 unk_rec=0.633 auroc=0.651 sel=blended_fallback score=-0.192 | ema auroc=0.701 score=-0.031
+[22:30:53][INFO] epoch 030 | loss=0.540 cls=0.306 obj=0.000 proto=0.938 vos=0.000 | val known_rec=0.528 unk_prec=0.284 unk_rec=0.644 auroc=0.617 sel=blended_fallback score=-0.339 | ema auroc=0.695 score=-0.083
+[22:31:00][INFO] epoch 031 | loss=0.536 cls=0.302 obj=0.000 proto=0.933 vos=0.000 | val known_rec=0.498 unk_prec=0.269 unk_rec=0.650 auroc=0.599 sel=blended_fallback score=-0.472 | ema auroc=0.691 score=0.171
+[22:31:07][INFO] epoch 032 | loss=0.531 cls=0.299 obj=0.000 proto=0.928 vos=0.000 | val known_rec=0.291 unk_prec=0.267 unk_rec=0.942 auroc=0.598 sel=blended_fallback score=-1.093 | ema auroc=0.683 score=0.072
+[22:31:14][INFO] epoch 033 | loss=0.529 cls=0.297 obj=0.000 proto=0.926 vos=0.000 | val known_rec=0.546 unk_prec=0.285 unk_rec=0.630 auroc=0.637 sel=blended_fallback score=-0.268 | ema auroc=0.675 score=0.023
+[22:31:21][INFO] epoch 034 | loss=0.526 cls=0.295 obj=0.000 proto=0.923 vos=0.000 | val known_rec=0.547 unk_prec=0.277 unk_rec=0.602 auroc=0.613 sel=blended_fallback score=-0.302 | ema auroc=0.669 score=0.032
+[22:31:28][INFO] epoch 035 | loss=0.525 cls=0.295 obj=0.000 proto=0.922 vos=0.000 | val known_rec=0.526 unk_prec=0.280 unk_rec=0.644 auroc=0.619 sel=blended_fallback score=-0.350 | ema auroc=0.664 score=-0.006
+[22:31:35][INFO] epoch 036 | loss=0.521 cls=0.292 obj=0.000 proto=0.918 vos=0.000 | val known_rec=0.529 unk_prec=0.274 unk_rec=0.621 auroc=0.611 sel=blended_fallback score=-0.361 | ema auroc=0.658 score=-0.005
+[22:31:43][INFO] epoch 037 | loss=0.524 cls=0.294 obj=0.000 proto=0.920 vos=0.000 | val known_rec=0.534 unk_prec=0.275 unk_rec=0.615 auroc=0.611 sel=blended_fallback score=-0.344 | ema auroc=0.654 score=-0.003
+[22:31:43][INFO] Early stopping after epoch 37: no val score improvement for 10 epochs.
+[22:31:43][INFO] Training complete. Running final evaluation on the test split ...
+[22:31:45][INFO] Candidate best (epoch 21): val score=0.417 known=0.803 unk_prec=0.440 unk_rec=0.242 auroc=0.717
+[22:31:47][INFO] Candidate best_ema (epoch 27): val score=0.251 known=0.801 unk_prec=0.363 unk_rec=0.177 auroc=0.710
+[22:31:47][INFO] Selected best (epoch 21, val score=0.417) for final evaluation.
+[22:31:49][INFO] Val-tuned newness threshold=-1.4971 (mode=meets_known_and_precision)
+[22:31:50][INFO] Final test report:
+{
+  "known_recall": 0.8032990974167444,
+  "per_class_recall": {
+    "0": 0.8306010928961749,
+    "1": 0.7851966873706004
+  },
+  "unknown_precision": 0.43595505617977526,
+  "unknown_recall": 0.23095238095238096,
+  "binary_accuracy": 0.8919319022945966,
+  "confusion_matrix": [
+    [
+      194,
+      51,
+      595
+    ],
+    [
+      6,
+      1064,
+      211
+    ],
+    [
+      245,
+      170,
+      1517
+    ]
+  ],
+  "labels_order": [
+    -1,
+    0,
+    1
+  ],
+  "operating_point": {
+    "objectness_threshold": 0.5,
+    "newness_threshold": -1.497143646276222
+  },
+  "auroc_newness": 0.7058593807893527,
+  "aupr_newness": 0.37085341408009087,
+  "auroc_energy": 0.6868958694588946,
+  "auroc_dist": 0.5666196108072858,
+  "tag": "test",
+  "tuned_newness_threshold": -1.497143646276222,
+  "threshold_selection_mode": "val_tuned:meets_known_and_precision"
+}
