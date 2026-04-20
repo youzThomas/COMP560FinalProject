@@ -87,7 +87,9 @@ class NewnessLossWeights:
     energy_hinge_power: float = 2.0
     energy_rank_margin: float = 0.0
     # Compress very large energy penalties so CE/objectness can still optimize.
-    energy_log_compress: bool = True
+    # Defaults to False so the energy margin produces real gradient; enable only
+    # if the energy term starts to dominate training and hurt CE convergence.
+    energy_log_compress: bool = False
     # Prototype contrastive temperature.
     proto_temperature: float = 0.1
 

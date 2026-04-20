@@ -175,6 +175,7 @@ def choose_newness_threshold(
     preds: dict[str, np.ndarray],
     target_unknown_precision: float = 0.35,
     target_known_recall: float = 0.80,
+    target_unknown_recall: float = 0.35,
     known_classes: list[int] | None = None,
     obj_threshold: float = 0.5,
 ) -> float:
@@ -183,6 +184,7 @@ def choose_newness_threshold(
         preds=preds,
         target_unknown_precision=target_unknown_precision,
         target_known_recall=target_known_recall,
+        target_unknown_recall=target_unknown_recall,
         known_classes=known_classes,
         obj_threshold=obj_threshold,
     )
@@ -193,19 +195,23 @@ def choose_operating_point(
     preds: dict[str, np.ndarray],
     target_unknown_precision: float = 0.35,
     target_known_recall: float = 0.80,
+    target_unknown_recall: float = 0.35,
     known_classes: list[int] | None = None,
     obj_threshold: float = 0.5,
 ) -> dict[str, float | str | dict]:
     """Select a newness threshold aligned with project acceptance criteria.
 
-    Priority:
-    1) satisfy both targets (known recall + unknown precision),
-    2) satisfy unknown-precision target and maximize known recall,
-    3) otherwise maximize a blended score favoring known recall.
+    Priority ladder (in order):
+    1) satisfy all three targets (known recall, unknown precision, unknown recall);
+       tie-break by unknown_recall -> known_recall -> unknown_precision.
+    2) satisfy known_recall + unknown_precision; maximize unknown_recall.
+    3) satisfy known_recall + unknown_recall; maximize unknown_precision.
+    4) satisfy unknown_precision; maximize known_recall + unknown_recall.
+    5) otherwise maximize a blended score including unknown_recall.
     """
     known_classes = known_classes or []
     candidates = np.unique(
-        np.quantile(preds["newness"], np.linspace(0.01, 0.995, 80))
+        np.quantile(preds["newness"], np.linspace(0.005, 0.999, 160))
     )
     if candidates.size == 0:
         t = float(np.median(preds["newness"]))
@@ -224,19 +230,64 @@ def choose_operating_point(
     def _safe(x: float) -> float:
         return 0.0 if np.isnan(x) else float(x)
 
-    feasible_both = [
+    feasible_all = [
+        (t, r) for (t, r) in evaluated
+        if _safe(r["known_recall"]) >= target_known_recall
+        and _safe(r["unknown_precision"]) >= target_unknown_precision
+        and _safe(r["unknown_recall"]) >= target_unknown_recall
+    ]
+    if feasible_all:
+        t, rep = max(
+            feasible_all,
+            key=lambda tr: (
+                _safe(tr[1]["unknown_recall"]),
+                _safe(tr[1]["known_recall"]),
+                _safe(tr[1]["unknown_precision"]),
+            ),
+        )
+        return {
+            "newness_threshold": float(t),
+            "selection_mode": "meets_all_targets",
+            "report": rep,
+        }
+
+    feasible_known_and_precision = [
         (t, r) for (t, r) in evaluated
         if _safe(r["known_recall"]) >= target_known_recall
         and _safe(r["unknown_precision"]) >= target_unknown_precision
     ]
-    if feasible_both:
+    if feasible_known_and_precision:
         t, rep = max(
-            feasible_both,
-            key=lambda tr: (_safe(tr[1]["known_recall"]), _safe(tr[1]["unknown_precision"])),
+            feasible_known_and_precision,
+            key=lambda tr: (
+                _safe(tr[1]["unknown_recall"]),
+                _safe(tr[1]["known_recall"]),
+                _safe(tr[1]["unknown_precision"]),
+            ),
         )
         return {
             "newness_threshold": float(t),
-            "selection_mode": "meets_both_targets",
+            "selection_mode": "meets_known_and_precision",
+            "report": rep,
+        }
+
+    feasible_known_and_recall = [
+        (t, r) for (t, r) in evaluated
+        if _safe(r["known_recall"]) >= target_known_recall
+        and _safe(r["unknown_recall"]) >= target_unknown_recall
+    ]
+    if feasible_known_and_recall:
+        t, rep = max(
+            feasible_known_and_recall,
+            key=lambda tr: (
+                _safe(tr[1]["unknown_precision"]),
+                _safe(tr[1]["unknown_recall"]),
+                _safe(tr[1]["known_recall"]),
+            ),
+        )
+        return {
+            "newness_threshold": float(t),
+            "selection_mode": "meets_known_and_recall",
             "report": rep,
         }
 
@@ -247,7 +298,10 @@ def choose_operating_point(
     if feasible_precision:
         t, rep = max(
             feasible_precision,
-            key=lambda tr: (_safe(tr[1]["known_recall"]), _safe(tr[1]["unknown_precision"])),
+            key=lambda tr: (
+                _safe(tr[1]["known_recall"]) + _safe(tr[1]["unknown_recall"]),
+                _safe(tr[1]["unknown_precision"]),
+            ),
         )
         return {
             "newness_threshold": float(t),
@@ -255,12 +309,13 @@ def choose_operating_point(
             "report": rep,
         }
 
-    # Last resort: maximize blended score with stronger weight on known recall.
+    # Last resort: blended score that explicitly values unknown_recall.
     t, rep = max(
         evaluated,
         key=lambda tr: (
-            0.7 * _safe(tr[1]["known_recall"])
-            + 0.3 * _safe(tr[1]["unknown_precision"])
+            0.45 * _safe(tr[1]["known_recall"])
+            + 0.30 * _safe(tr[1]["unknown_recall"])
+            + 0.25 * _safe(tr[1]["unknown_precision"])
         ),
     )
     return {

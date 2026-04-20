@@ -33,7 +33,10 @@ model:
   pam_proto_dim: 128
   # Scoring
   energy_temperature: 1.0
-  fusion_alpha: 0.5       # weight on energy in the fused newness score
+  # Energy dominates the fused score because on this dataset the distance
+  # component (AUROC ~0.51) is close to random while energy (AUROC ~0.60)
+  # actually separates knowns from unknowns.
+  fusion_alpha: 0.75      # weight on energy in the fused newness score
   # Thresholds (used for default inference; swept in evaluation)
   objectness_threshold: 0.5
   newness_threshold: 0.0  # in z-score space (set after calibration)
@@ -47,7 +50,9 @@ training:
   # Loss weights
   w_class: 1.0
   w_objectness: 1.0
-  w_energy: 0.02
+  # Previous 0.02 paired with log-compression made the energy margin term
+  # effectively untrained; bump it so the OOD signal gets real gradient.
+  w_energy: 0.1
   w_proto: 0.25
   # Energy margin loss: push known in-dist energy low and surrogate "unknown" (unmatched
   # queries / background) energy high.
@@ -58,5 +63,6 @@ training:
   # Acceptance criteria targets (used by threshold selection and checkpoint scoring).
   target_unknown_precision: 0.35
   target_known_recall: 0.80
+  target_unknown_recall: 0.35
   log_every: 20
   ckpt_dir: runs/default

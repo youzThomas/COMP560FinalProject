@@ -50,6 +50,7 @@ def main() -> None:
     seed_everything(int(cfg.seed))
     target_unknown_precision = float(cfg.training.get("target_unknown_precision", 0.35))
     target_known_recall = float(cfg.training.get("target_known_recall", 0.80))
+    target_unknown_recall = float(cfg.training.get("target_unknown_recall", 0.35))
 
     loaders = build_dataloaders(cfg)
     cfg.model.in_channels = loaders["n_channels"]
@@ -85,6 +86,7 @@ def main() -> None:
             preds,
             target_unknown_precision=target_unknown_precision,
             target_known_recall=target_known_recall,
+            target_unknown_recall=target_unknown_recall,
             known_classes=loaders["known_classes"],
             obj_threshold=float(cfg.model.objectness_threshold),
         )

@@ -55,6 +55,7 @@ class Trainer:
         self.log_every = int(tcfg.get("log_every", 20))
         self.target_unknown_precision = float(tcfg.get("target_unknown_precision", 0.35))
         self.target_known_recall = float(tcfg.get("target_known_recall", 0.80))
+        self.target_unknown_recall = float(tcfg.get("target_unknown_recall", 0.35))
 
         self.loss_fn = NewnessLoss(
             weights=NewnessLossWeights(
@@ -136,6 +137,7 @@ class Trainer:
             preds,
             target_unknown_precision=self.target_unknown_precision,
             target_known_recall=self.target_known_recall,
+            target_unknown_recall=self.target_unknown_recall,
             known_classes=self.known_classes,
             obj_threshold=float(self.cfg.model.objectness_threshold),
         )
@@ -157,13 +159,15 @@ class Trainer:
             val_report = self.evaluate(self.val_loader, tag="val")
             known = 0.0 if math.isnan(val_report["known_recall"]) else float(val_report["known_recall"])
             unk_prec = 0.0 if math.isnan(val_report["unknown_precision"]) else float(val_report["unknown_precision"])
-            score = known + 0.25 * unk_prec
-            # Penalize checkpoints that miss acceptance criteria.
-            score -= max(0.0, self.target_known_recall - known)
-            score -= 2.0 * max(0.0, self.target_unknown_precision - unk_prec)
+            unk_rec = 0.0 if math.isnan(val_report["unknown_recall"]) else float(val_report["unknown_recall"])
+            # Reward all three acceptance criteria; hinge-penalize anyone that misses.
+            score = 0.5 * known + 0.3 * unk_rec + 0.2 * unk_prec
+            score -= 1.0 * max(0.0, self.target_known_recall - known)
+            score -= 1.5 * max(0.0, self.target_unknown_precision - unk_prec)
+            score -= 1.5 * max(0.0, self.target_unknown_recall - unk_rec)
             self.logger.info(
                 "epoch %03d | loss=%.3f cls=%.3f obj=%.3f proto=%.3f | "
-                "val known_rec=%.3f unk_prec=%.3f auroc=%.3f sel=%s score=%.3f",
+                "val known_rec=%.3f unk_prec=%.3f unk_rec=%.3f auroc=%.3f sel=%s score=%.3f",
                 epoch,
                 train_stats.get("loss", 0.0),
                 train_stats.get("cls", 0.0),
@@ -171,6 +175,7 @@ class Trainer:
                 train_stats.get("proto", 0.0),
                 val_report["known_recall"],
                 val_report["unknown_precision"],
+                val_report["unknown_recall"],
                 val_report.get("auroc_newness", float("nan")),
                 val_report.get("threshold_selection_mode", "n/a"),
                 score,
