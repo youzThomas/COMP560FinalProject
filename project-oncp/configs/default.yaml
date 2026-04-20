@@ -33,10 +33,13 @@ model:
   pam_proto_dim: 128
   # Scoring
   energy_temperature: 1.0
-  # Energy dominates the fused score because on this dataset the distance
-  # component (AUROC ~0.51) is close to random while energy (AUROC ~0.60)
-  # actually separates knowns from unknowns.
-  fusion_alpha: 0.75      # weight on energy in the fused newness score
+  # newness = fusion_alpha * energy_z + fusion_msp * msp_z + (1-alpha-msp) * dist_z
+  # On this dataset energy alone (AUROC ~0.63) beat both distance (AUROC ~0.55)
+  # and the MSP-augmented fusion (AUROC ~0.58); MSP degenerates to a noisy
+  # function of the class-margin for K=2 and its running z-score oscillates
+  # across epochs, so we disable it and let dist contribute only slightly.
+  fusion_alpha: 0.85
+  fusion_msp: 0.0
   # Thresholds (used for default inference; swept in evaluation)
   objectness_threshold: 0.5
   newness_threshold: 0.0  # in z-score space (set after calibration)
@@ -54,10 +57,47 @@ training:
   # effectively untrained; bump it so the OOD signal gets real gradient.
   w_energy: 0.1
   w_proto: 0.25
+  # Tail-extrapolation Virtual Outlier Synthesis.
+  # Left OFF by default. Turning it on at w_vos=0.15 with alpha=1.5 broke
+  # training in run 44444382: the classifier collapsed into "predict unknown"
+  # within ~5 epochs because Hungarian matching had not converged and the
+  # per-batch class centroids were random, so q_tail was noise and routed a
+  # huge gradient through class_head before the classifier could learn.
+  # If re-enabling, keep w_vos small (<= 0.05), set vos_warmup_epochs so the
+  # loss is only active after class centroids stabilize, and/or use a larger
+  # vos_m_out so only far-tail synthetic samples fire the hinge.
+  w_vos: 0.0
+  vos_m_out: 0.5
+  vos_alpha: 1.5
+  vos_warmup_epochs: 8
+  # Per-sample Gaussian noise added to the training input signals. Scales with
+  # each sample's own stddev so it does not drown out the weaker channels. A
+  # light amount (~3%) acts as the only data augmentation on a dataset that
+  # otherwise overfits to the known-class manifold very quickly.
+  input_noise_std: 0.03
+  # Stop training if val score stops improving for this many epochs. The best
+  # checkpoint is already saved to disk so this only cuts wasted compute and
+  # avoids the late-epoch collapse we saw after ~epoch 17 in prior runs.
+  early_stop_patience: 10
+  # Exponential moving average of the model weights. A parallel snapshot is
+  # updated every optimizer step with momentum model_ema_decay and saved as
+  # best_ema.pt whenever its val score beats the live model. The final report
+  # picks whichever of {best.pt, best_ema.pt} scores higher on val. Typically
+  # adds 1-3 AUROC points on small datasets without touching training dynamics.
+  # Set model_ema_decay: 0 to disable.
+  model_ema_decay: 0.999
   # Energy margin loss: push known in-dist energy low and surrogate "unknown" (unmatched
   # queries / background) energy high.
-  energy_m_in: -4.5
-  energy_m_out: -2.0
+  energy_m_in: -5.0
+  energy_m_out: 0.0
+  # Explicit rank loss between matched (low) and unmatched (high) energies.
+  # Keeps the classifier producing a monotone OOD signal even when the absolute
+  # energy drifts during training.
+  energy_rank_margin: 1.0
+  energy_log_compress: false
+  # Slight label smoothing stops the classifier from saturating on Degraded, which
+  # was making Failed samples get *lower* energy than Healthy samples.
+  cls_label_smoothing: 0.05
   # Prototype EMA update momentum
   proto_ema: 0.9
   # Acceptance criteria targets (used by threshold selection and checkpoint scoring).

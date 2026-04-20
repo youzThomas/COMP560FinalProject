@@ -71,6 +71,7 @@ def main() -> None:
         pam_proto_dim=int(cfg.model.pam_proto_dim),
         energy_temperature=float(cfg.model.energy_temperature),
         fusion_alpha=float(cfg.model.fusion_alpha),
+        fusion_msp=float(cfg.model.get("fusion_msp", 0.0)),
     ).to(device)
 
     state = torch.load(args.checkpoint, map_location=device)

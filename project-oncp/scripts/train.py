@@ -79,6 +79,7 @@ def main() -> None:
         pam_proto_dim=int(cfg.model.pam_proto_dim),
         energy_temperature=float(cfg.model.energy_temperature),
         fusion_alpha=float(cfg.model.fusion_alpha),
+        fusion_msp=float(cfg.model.get("fusion_msp", 0.0)),
     )
     n_params = sum(p.numel() for p in model.parameters())
     logger.info("Model parameters: %.2fM", n_params / 1e6)
@@ -87,7 +88,10 @@ def main() -> None:
     trainer.fit()
 
     logger.info("Training complete. Running final evaluation on the test split ...")
-    final = trainer.evaluate(loaders["test_loader"], tag="test")
+    # evaluate_best loads runs/.../best.pt and uses a val-tuned threshold so the
+    # final test numbers reflect the best checkpoint, not the last epoch, and do
+    # not tune the threshold on the test split itself.
+    final = trainer.evaluate_best(loaders["test_loader"], tag="test")
     logger.info("Final test report:\n%s", json.dumps(final, indent=2, default=float))
 
     with open(Path(cfg.training.ckpt_dir) / "test_report.json", "w", encoding="utf-8") as f:

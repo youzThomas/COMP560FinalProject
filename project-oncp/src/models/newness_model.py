@@ -66,6 +66,19 @@ def energy_score(logits: torch.Tensor, temperature: float) -> torch.Tensor:
     return -T * torch.logsumexp(logits / T, dim=-1)
 
 
+def msp_newness(logits: torch.Tensor, temperature: float) -> torch.Tensor:
+    """``1 - max softmax prob`` under temperature scaling (high = more novel).
+
+    MSP captures classifier *margin* rather than classifier *magnitude*, which
+    makes it complementary to the free-energy score when the known-class
+    feature distributions are tight (small margins indicate potential OOD
+    samples even when the absolute logits are large).
+    """
+    T = float(temperature)
+    probs = torch.softmax(logits / T, dim=-1)
+    return 1.0 - probs.max(dim=-1).values
+
+
 class NewnessTransformer(nn.Module):
     def __init__(
         self,
@@ -83,6 +96,7 @@ class NewnessTransformer(nn.Module):
         pam_proto_dim: int | None = None,
         energy_temperature: float = 1.0,
         fusion_alpha: float = 0.5,
+        fusion_msp: float = 0.0,
     ) -> None:
         super().__init__()
         if window_size % patch_size != 0:
@@ -125,10 +139,21 @@ class NewnessTransformer(nn.Module):
         self.num_known_classes = num_known_classes
         self.num_queries = num_queries
         self.energy_temperature = energy_temperature
-        self.fusion_alpha = fusion_alpha
+        # Fusion weights for newness = a*energy_z + b*msp_z + (1-a-b)*dist_z.
+        # Clamp to keep dist_weight >= 0 so we never invert a component.
+        a = float(fusion_alpha)
+        b = float(fusion_msp)
+        if a + b > 1.0:
+            scale = 1.0 / (a + b)
+            a *= scale
+            b *= scale
+        self.fusion_alpha = a
+        self.fusion_msp = b
+        self.fusion_dist = max(0.0, 1.0 - a - b)
 
         self.energy_stats = _RunningStats()
         self.dist_stats = _RunningStats()
+        self.msp_stats = _RunningStats()
 
     @property
     def device(self) -> torch.device:
@@ -145,6 +170,7 @@ class NewnessTransformer(nn.Module):
         class_logits = self.class_head(queries)           # [B, Q, K]
         obj_logits = self.obj_head(queries).squeeze(-1)   # [B, Q]
         energy = energy_score(class_logits, self.energy_temperature)  # [B, Q]
+        msp = msp_newness(class_logits, self.energy_temperature)       # [B, Q]
 
         proto_feats = self.proto_proj(queries)            # [B, Q, P]
         pam_out = self.pam(proto_feats)
@@ -153,9 +179,15 @@ class NewnessTransformer(nn.Module):
         if self.training:
             self.energy_stats.update(energy.detach().flatten())
             self.dist_stats.update(dist.detach().flatten())
+            self.msp_stats.update(msp.detach().flatten())
         energy_z = self.energy_stats.zscore(energy)
         dist_z = self.dist_stats.zscore(dist)
-        newness = self.fusion_alpha * energy_z + (1.0 - self.fusion_alpha) * dist_z
+        msp_z = self.msp_stats.zscore(msp)
+        newness = (
+            self.fusion_alpha * energy_z
+            + self.fusion_msp * msp_z
+            + self.fusion_dist * dist_z
+        )
 
         return {
             "class_logits": class_logits,
@@ -165,6 +197,8 @@ class NewnessTransformer(nn.Module):
             "energy_z": energy_z,
             "dist": dist,
             "dist_z": dist_z,
+            "msp": msp,
+            "msp_z": msp_z,
             "newness": newness,
             "query_feats": queries,
             "proto_feats": proto_feats,
@@ -172,6 +206,60 @@ class NewnessTransformer(nn.Module):
             "pam_attn": pam_out["attn"],
             "memory": memory,
         }
+
+    def compute_vos_loss(
+        self,
+        query_feats: torch.Tensor,
+        matched_idx: torch.Tensor,
+        targets: torch.Tensor,
+        m_out: float,
+        alpha: float = 1.5,
+    ) -> torch.Tensor:
+        """Tail-extrapolation Virtual Outlier Synthesis.
+
+        An earlier cross-class MixUp version of this loss inverted the
+        energy signal on the Mill dataset because Failed samples are *not*
+        halfway between Healthy and Degraded -- they are *beyond* Degraded
+        on the wear continuum. Training "midpoint => OOD" made the classifier
+        *more* confident on pure-class features, including Failed samples.
+
+        This version instead builds per-class centroids from matched query
+        features in the current batch (detached from graph so the target
+        does not move) and extrapolates each sample away from its own class
+        center::
+
+            q_tail = q + alpha * (q - class_center(q))
+
+        With ``alpha=1.5`` this lands the synthetic feature 2.5x further
+        from the class centroid than the real sample, out in the tail of
+        that class' distribution. Pushing ``E(q_tail) > m_out`` teaches the
+        model that the tails of the known classes should read as OOD --
+        which is exactly where Failed samples live relative to Degraded.
+        """
+        B = query_feats.size(0)
+        device = query_feats.device
+        if B < 2:
+            return query_feats.new_zeros(())
+        batch_idx = torch.arange(B, device=device)
+        matched_q = query_feats[batch_idx, matched_idx]       # [B, D]
+
+        # Per-class centroid from this batch (detached to decouple targets).
+        centroids: list[torch.Tensor] = []
+        for c in range(self.num_known_classes):
+            mask = targets == c
+            if mask.any():
+                centroids.append(matched_q[mask].mean(dim=0, keepdim=True).detach())
+            else:
+                centroids.append(matched_q.mean(dim=0, keepdim=True).detach())
+        centroid_table = torch.cat(centroids, dim=0)          # [K, D]
+        sample_center = centroid_table[targets]                # [B, D]
+        tail = matched_q + float(alpha) * (matched_q - sample_center)
+
+        logits = self.class_head(tail)                         # [B, K]
+        T = float(self.energy_temperature)
+        energy = -T * torch.logsumexp(logits / T, dim=-1)      # [B]
+        # Hinge-squared margin: tail-sample energy should sit above m_out.
+        return F.relu(float(m_out) - energy).pow(2).mean()
 
     def predict(
         self,
