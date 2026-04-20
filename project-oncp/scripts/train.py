@@ -38,11 +38,30 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, default="configs/default.yaml")
     parser.add_argument("--override-epochs", type=int, default=None)
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Override cfg.seed. Use together with --ckpt-dir when training an "
+        "ensemble so each member is both differently initialized and written to "
+        "its own directory.",
+    )
+    parser.add_argument(
+        "--ckpt-dir",
+        type=str,
+        default=None,
+        help="Override cfg.training.ckpt_dir. The final test report also lands here.",
+    )
     args = parser.parse_args()
 
     logger = get_logger("oncp.train")
     cfg = load_config(args.config)
+    if args.seed is not None:
+        cfg.seed = int(args.seed)
+    if args.ckpt_dir is not None:
+        cfg.training.ckpt_dir = str(args.ckpt_dir)
     seed_everything(int(cfg.seed))
+    logger.info("Seed: %d | ckpt_dir: %s", int(cfg.seed), cfg.training.ckpt_dir)
     if args.override_epochs is not None:
         cfg.training.epochs = args.override_epochs
 

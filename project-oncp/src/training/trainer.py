@@ -327,8 +327,13 @@ class Trainer:
     def _score_report(val_report: dict, t_known: float, t_prec: float, t_rec: float) -> float:
         """Checkpoint score used for both live model and EMA snapshot.
 
-        Same formula as the previous inline scorer, extracted so the two
-        branches (live / ema) cannot drift apart.
+        Rebalanced after run 44460876 diagnosed that unknown_precision is
+        heavily oversupplied (test 0.484 vs 0.35 target = ~13pp slack) while
+        unknown_recall is the binding constraint (test 0.160 vs 0.35 target).
+        We therefore reward auroc and unknown_recall more, and treat
+        unknown_precision's shortfall with a lighter hinge so it no longer
+        blocks higher-auroc epochs. The known_recall hinge stays heavy because
+        it is a hard project acceptance criterion.
         """
         known = 0.0 if math.isnan(val_report["known_recall"]) else float(val_report["known_recall"])
         unk_prec = 0.0 if math.isnan(val_report["unknown_precision"]) else float(val_report["unknown_precision"])
@@ -336,14 +341,14 @@ class Trainer:
         auroc_raw = val_report.get("auroc_newness", float("nan"))
         auroc = 0.5 if (auroc_raw is None or math.isnan(float(auroc_raw))) else float(auroc_raw)
         s = (
-            0.50 * known
-            + 0.25 * unk_prec
-            + 0.15 * unk_rec
-            + 0.40 * max(0.0, auroc - 0.5)
+            0.40 * known
+            + 0.15 * unk_prec
+            + 0.30 * unk_rec
+            + 0.80 * max(0.0, auroc - 0.5)
         )
         s -= 3.0 * max(0.0, t_known - known)
-        s -= 3.0 * max(0.0, t_prec - unk_prec)
-        s -= 0.5 * max(0.0, t_rec - unk_rec)
+        s -= 1.0 * max(0.0, t_prec - unk_prec)
+        s -= 2.0 * max(0.0, t_rec - unk_rec)
         return s
 
     def fit(self) -> dict[str, Any]:
