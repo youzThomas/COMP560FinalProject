@@ -1,0 +1,103 @@
+#!/bin/bash
+# Avoid partition "gpu" (GTX 1080, sm_61): standard pip PyTorch builds target sm_70+ only → CUDA crashes.
+# Use volta-gpu (V100), l40-gpu, or a100-gpu instead.
+#SBATCH --job-name=COMP560-oncp
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=23:59:59
+#SBATCH --partition=volta-gpu
+#SBATCH --qos=gpu_access
+#SBATCH --gres=gpu:1
+#SBATCH --output=/work/users/d/y/dyy12/COMP-560/logs/%x-%j.out
+#SBATCH --error=/work/users/d/y/dyy12/COMP-560/logs/%x-%j.err
+
+set -euo pipefail
+
+WORKDIR="/work/users/d/y/dyy12/COMP-560"
+PROJECT_DIR="${PROJECT_DIR:-project-oncp}"
+cd "$WORKDIR/$PROJECT_DIR"
+mkdir -p "$WORKDIR/logs"
+
+# Compute nodes often lack a login shell; load modules like the RC docs (module add anaconda/2024.02).
+if [[ -f /etc/profile.d/modules.sh ]]; then
+  # shellcheck source=/dev/null
+  source /etc/profile.d/modules.sh
+fi
+module purge 2>/dev/null || true
+module add anaconda/2024.02 2>/dev/null || module load anaconda/2024.02 2>/dev/null || true
+
+CONDA_ROOT="${CONDA_ROOT:-/nas/longleaf/rhel9/apps/anaconda/2024.02}"
+if [[ -f "$CONDA_ROOT/etc/profile.d/conda.sh" ]]; then
+  # shellcheck source=/dev/null
+  source "$CONDA_ROOT/etc/profile.d/conda.sh"
+fi
+
+# Use the same env as project-oncp/requirements.txt (matches configs/default.yaml via TRAIN_ARGS).
+COMP560_ENV_NAME="${COMP560_ENV_NAME:-comp560}"
+COMP560_PYTHON="${COMP560_PYTHON:-${HOME}/.conda/envs/${COMP560_ENV_NAME}/bin/python}"
+
+if [[ ! -x "$COMP560_PYTHON" ]]; then
+  echo "Missing conda env Python: $COMP560_PYTHON" >&2
+  echo "On a login node, create the env and install deps, e.g.:" >&2
+  echo "  conda create -y -n ${COMP560_ENV_NAME} python=3.11 pip setuptools wheel" >&2
+  echo "  conda activate ${COMP560_ENV_NAME}" >&2
+  echo "  pip install -r ${WORKDIR}/${PROJECT_DIR}/requirements.txt" >&2
+  exit 1
+fi
+
+conda activate "${COMP560_ENV_NAME}"
+export PATH="${HOME}/.conda/envs/${COMP560_ENV_NAME}/bin:${PATH}"
+
+"$COMP560_PYTHON" -c "import torch" >/dev/null 2>&1 || {
+  echo "torch is not installed in ${COMP560_ENV_NAME} (${COMP560_PYTHON})." >&2
+  echo "Run: conda activate ${COMP560_ENV_NAME} && pip install -r ${WORKDIR}/${PROJECT_DIR}/requirements.txt" >&2
+  exit 1
+}
+
+# Preflight CUDA execution so incompatible torch/GPU combos fail before training starts.
+"$COMP560_PYTHON" - <<'PY'
+import subprocess
+import sys
+import torch
+
+if not torch.cuda.is_available():
+    print("WARN: CUDA is not available to PyTorch; training may run on CPU.", file=sys.stderr)
+    sys.exit(0)
+
+try:
+    # Simple CUDA op to catch "no kernel image is available" up front.
+    _ = (torch.ones(8, device="cuda") + 1).sum().item()
+except Exception as e:
+    gpu_name = "unknown"
+    try:
+        gpu_name = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], text=True
+        ).strip().splitlines()[0]
+    except Exception:
+        pass
+    print(f"ERROR: CUDA preflight failed on GPU '{gpu_name}' with torch {torch.__version__}: {e}", file=sys.stderr)
+    print("If using V100/volta-gpu, install a compatible build:", file=sys.stderr)
+    print("  conda activate comp560", file=sys.stderr)
+    print("  pip uninstall -y torch", file=sys.stderr)
+    print("  pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121", file=sys.stderr)
+    sys.exit(1)
+PY
+
+export HF_HOME="$WORKDIR/hf_cache"
+export TRANSFORMERS_CACHE="$HF_HOME/transformers"
+export HF_DATASETS_CACHE="$HF_HOME/datasets"
+mkdir -p "$TRANSFORMERS_CACHE" "$HF_DATASETS_CACHE"
+
+# Override before sbatch if needed, e.g. --override-epochs 10
+TRAIN_ARGS="${TRAIN_ARGS:---config configs/default.yaml}"
+
+if [[ ! -f scripts/train.py ]]; then
+  echo "Expected scripts/train.py under $WORKDIR/$PROJECT_DIR" >&2
+  exit 1
+fi
+
+echo "Job ${SLURM_JOB_ID}: cwd=$(pwd) python=$("$COMP560_PYTHON" -c 'import sys; print(sys.executable)') torch=$("$COMP560_PYTHON" -c 'import torch; print(torch.__version__)')"
+echo "Job ${SLURM_JOB_ID}: $COMP560_PYTHON -u scripts/train.py $TRAIN_ARGS"
+# shellcheck disable=SC2086
+"$COMP560_PYTHON" -u scripts/train.py $TRAIN_ARGS

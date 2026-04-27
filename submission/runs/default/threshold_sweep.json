@@ -1,0 +1,845 @@
+{
+  "checkpoint": "runs/default/best.pt",
+  "epoch": 10,
+  "rows": [
+    {
+      "newness_threshold": -2.218204531669617,
+      "val_known_recall": 0.004979769685652039,
+      "val_unknown_precision": 0.20833333333333334,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.0040460628695922814,
+      "test_unknown_precision": 0.20797227036395147,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.210056318017501,
+      "val_known_recall": 0.018674136321195144,
+      "val_unknown_precision": 0.21100226073850792,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.021475256769374416,
+      "test_unknown_precision": 0.21110831867303342,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.2035913271602197,
+      "val_known_recall": 0.03392468098350451,
+      "val_unknown_precision": 0.21374045801526717,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.035480859010270774,
+      "test_unknown_precision": 0.21368608496565758,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.1983557063718386,
+      "val_known_recall": 0.049175225645813885,
+      "val_unknown_precision": 0.21655065738592422,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.050731403672580146,
+      "test_unknown_precision": 0.21638330757341576,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.1918408316841607,
+      "val_known_recall": 0.06411453470277,
+      "val_unknown_precision": 0.219435736677116,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.06784936196700903,
+      "test_unknown_precision": 0.2196652719665272,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.185015366711194,
+      "val_known_recall": 0.07905384375972611,
+      "val_unknown_precision": 0.22239872915011913,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.08216619981325864,
+      "test_unknown_precision": 0.22257551669316375,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.176800821038741,
+      "val_known_recall": 0.09461562402738874,
+      "val_unknown_precision": 0.22544283413848631,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.096171802054155,
+      "test_unknown_precision": 0.22550335570469798,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.1653441139172904,
+      "val_known_recall": 0.1098661686896981,
+      "val_unknown_precision": 0.22857142857142856,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.11391223155929038,
+      "test_unknown_precision": 0.22932022932022933,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.154398389043687,
+      "val_known_recall": 0.12449424214130096,
+      "val_unknown_precision": 0.23178807947019867,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.12978524743230627,
+      "test_unknown_precision": 0.23268698060941828,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.135308017501348,
+      "val_known_recall": 0.13912231559290383,
+      "val_unknown_precision": 0.23509655751469352,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.14877061935885466,
+      "test_unknown_precision": 0.2368198477586693,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.1122850686688968,
+      "val_known_recall": 0.15468409586056645,
+      "val_unknown_precision": 0.23850085178875638,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.16651104886399004,
+      "test_unknown_precision": 0.2408256880733945,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.0880872720766672,
+      "val_known_recall": 0.16900093370681607,
+      "val_unknown_precision": 0.24200518582541056,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.18362900715841893,
+      "test_unknown_precision": 0.24489795918367346,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.0559781034928335,
+      "val_known_recall": 0.18269530034235917,
+      "val_unknown_precision": 0.24561403508771928,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.20105820105820105,
+      "test_unknown_precision": 0.24925816023738873,
+      "test_unknown_recall": 1.0
+    },
+    {
+      "newness_threshold": -2.0275218862098985,
+      "val_known_recall": 0.19638966697790228,
+      "val_unknown_precision": 0.2493321460373998,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.21226268285091815,
+      "test_unknown_precision": 0.25225496091401084,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -2.0012775422711915,
+      "val_known_recall": 0.2079053843759726,
+      "val_unknown_precision": 0.25316455696202533,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.22128851540616246,
+      "test_unknown_precision": 0.25540334855403346,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -1.9712408484688289,
+      "val_known_recall": 0.22097727980080922,
+      "val_unknown_precision": 0.2571166207529844,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.23436041083099907,
+      "test_unknown_precision": 0.2600743955362678,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -1.9403211908219735,
+      "val_known_recall": 0.23311546840958605,
+      "val_unknown_precision": 0.26111283804787067,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.2452536570183629,
+      "test_unknown_precision": 0.26408561536040287,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -1.9119649265325522,
+      "val_known_recall": 0.24618736383442266,
+      "val_unknown_precision": 0.2653190145293746,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.2545907251789605,
+      "test_unknown_precision": 0.26728257406817457,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -1.8752610269256784,
+      "val_known_recall": 0.25957049486461253,
+      "val_unknown_precision": 0.2696629213483146,
+      "val_unknown_recall": 1.0,
+      "test_known_recall": 0.26330532212885155,
+      "test_unknown_precision": 0.2708198837959974,
+      "test_unknown_recall": 0.9988095238095238
+    },
+    {
+      "newness_threshold": -1.8518974113585074,
+      "val_known_recall": 0.2720199190787426,
+      "val_unknown_precision": 0.27382506527415146,
+      "val_unknown_recall": 0.9988095238095238,
+      "test_known_recall": 0.2748210395269219,
+      "test_unknown_precision": 0.27397708674304416,
+      "test_unknown_recall": 0.9964285714285714
+    },
+    {
+      "newness_threshold": -1.8240720003466064,
+      "val_known_recall": 0.28540305010893247,
+      "val_unknown_precision": 0.2781281115167607,
+      "val_unknown_recall": 0.9976190476190476,
+      "test_known_recall": 0.2863367569249922,
+      "test_unknown_precision": 0.27575858619539845,
+      "test_unknown_recall": 0.9845238095238096
+    },
+    {
+      "newness_threshold": -1.8003119995563845,
+      "val_known_recall": 0.2975412387177093,
+      "val_unknown_precision": 0.28190411883862254,
+      "val_unknown_recall": 0.9940476190476191,
+      "test_known_recall": 0.29909741674447554,
+      "test_unknown_precision": 0.2794567062818336,
+      "test_unknown_recall": 0.9797619047619047
+    },
+    {
+      "newness_threshold": -1.7822379619260382,
+      "val_known_recall": 0.3099906629318394,
+      "val_unknown_precision": 0.2858124355891446,
+      "val_unknown_recall": 0.9904761904761905,
+      "test_known_recall": 0.3078120136943666,
+      "test_unknown_precision": 0.2824742268041237,
+      "test_unknown_recall": 0.9785714285714285
+    },
+    {
+      "newness_threshold": -1.7542419467274146,
+      "val_known_recall": 0.3190164954870837,
+      "val_unknown_precision": 0.2874125874125874,
+      "val_unknown_recall": 0.9785714285714285,
+      "test_known_recall": 0.3159041394335512,
+      "test_unknown_precision": 0.28601398601398603,
+      "test_unknown_recall": 0.9738095238095238
+    },
+    {
+      "newness_threshold": -1.7374103364582303,
+      "val_known_recall": 0.32866479925303455,
+      "val_unknown_precision": 0.28978284086863654,
+      "val_unknown_recall": 0.969047619047619,
+      "test_known_recall": 0.32555244319950205,
+      "test_unknown_precision": 0.2882018479033404,
+      "test_unknown_recall": 0.9654761904761905
+    },
+    {
+      "newness_threshold": -1.7284394986116434,
+      "val_known_recall": 0.3401805166511049,
+      "val_unknown_precision": 0.29260333575054387,
+      "val_unknown_recall": 0.9607142857142857,
+      "test_known_recall": 0.33208839091192033,
+      "test_unknown_precision": 0.28895286074127385,
+      "test_unknown_recall": 0.955952380952381
+    },
+    {
+      "newness_threshold": -1.71974135394036,
+      "val_known_recall": 0.3516962340491752,
+      "val_unknown_precision": 0.2951606944957518,
+      "val_unknown_recall": 0.9511904761904761,
+      "test_known_recall": 0.3439153439153439,
+      "test_unknown_precision": 0.29209370424597364,
+      "test_unknown_recall": 0.95
+    },
+    {
+      "newness_threshold": -1.7142086684190774,
+      "val_known_recall": 0.3644568938686586,
+      "val_unknown_precision": 0.2996987951807229,
+      "val_unknown_recall": 0.9476190476190476,
+      "test_known_recall": 0.35605353252412075,
+      "test_unknown_precision": 0.29564894012644105,
+      "test_unknown_recall": 0.9464285714285714
+    },
+    {
+      "newness_threshold": -1.7090006178783466,
+      "val_known_recall": 0.37597261126672893,
+      "val_unknown_precision": 0.30211132437619964,
+      "val_unknown_recall": 0.9369047619047619,
+      "test_known_recall": 0.36539060068471835,
+      "test_unknown_precision": 0.29780801209372637,
+      "test_unknown_recall": 0.9380952380952381
+    },
+    {
+      "newness_threshold": -1.7038449663572675,
+      "val_known_recall": 0.3881107998755058,
+      "val_unknown_precision": 0.30462020360219266,
+      "val_unknown_recall": 0.9261904761904762,
+      "test_known_recall": 0.37815126050420167,
+      "test_unknown_precision": 0.2997296253379683,
+      "test_unknown_recall": 0.9238095238095239
+    },
+    {
+      "newness_threshold": -1.696416669284241,
+      "val_known_recall": 0.3968253968253968,
+      "val_unknown_precision": 0.30523371953655615,
+      "val_unknown_recall": 0.9095238095238095,
+      "test_known_recall": 0.3915343915343915,
+      "test_unknown_precision": 0.30245447347585114,
+      "test_unknown_recall": 0.9095238095238095
+    },
+    {
+      "newness_threshold": -1.6907347960532466,
+      "val_known_recall": 0.40585122938064117,
+      "val_unknown_precision": 0.3062805872756933,
+      "val_unknown_recall": 0.8940476190476191,
+      "test_known_recall": 0.39931528166822283,
+      "test_unknown_precision": 0.3016129032258065,
+      "test_unknown_recall": 0.8904761904761904
+    },
+    {
+      "newness_threshold": -1.6845971857143354,
+      "val_known_recall": 0.415499533146592,
+      "val_unknown_precision": 0.307371928363182,
+      "val_unknown_recall": 0.8785714285714286,
+      "test_known_recall": 0.4074074074074074,
+      "test_unknown_precision": 0.30135858377933306,
+      "test_unknown_recall": 0.8714285714285714
+    },
+    {
+      "newness_threshold": -1.6792681853620313,
+      "val_known_recall": 0.42328042328042326,
+      "val_unknown_precision": 0.3080851063829787,
+      "val_unknown_recall": 0.861904761904762,
+      "test_known_recall": 0.41487706193588547,
+      "test_unknown_precision": 0.30210084033613444,
+      "test_unknown_recall": 0.8559523809523809
+    },
+    {
+      "newness_threshold": -1.6747455092683623,
+      "val_known_recall": 0.43386243386243384,
+      "val_unknown_precision": 0.31056981296215747,
+      "val_unknown_recall": 0.85,
+      "test_known_recall": 0.4226579520697168,
+      "test_unknown_precision": 0.30312099187687047,
+      "test_unknown_recall": 0.844047619047619
+    },
+    {
+      "newness_threshold": -1.671476659714421,
+      "val_known_recall": 0.44506691565515094,
+      "val_unknown_precision": 0.31183274021352314,
+      "val_unknown_recall": 0.8345238095238096,
+      "test_known_recall": 0.4323062558356676,
+      "test_unknown_precision": 0.30578512396694213,
+      "test_unknown_recall": 0.8369047619047619
+    },
+    {
+      "newness_threshold": -1.6676395387227023,
+      "val_known_recall": 0.455026455026455,
+      "val_unknown_precision": 0.3140646335912608,
+      "val_unknown_recall": 0.8214285714285714,
+      "test_known_recall": 0.4425770308123249,
+      "test_unknown_precision": 0.30786317192358953,
+      "test_unknown_recall": 0.825
+    },
+    {
+      "newness_threshold": -1.6635288142916522,
+      "val_known_recall": 0.4665421724245254,
+      "val_unknown_precision": 0.31780055917986955,
+      "val_unknown_recall": 0.8119047619047619,
+      "test_known_recall": 0.453781512605042,
+      "test_unknown_precision": 0.3116469517743403,
+      "test_unknown_recall": 0.8154761904761905
+    },
+    {
+      "newness_threshold": -1.660486371468894,
+      "val_known_recall": 0.47587924058512293,
+      "val_unknown_precision": 0.3183770883054893,
+      "val_unknown_recall": 0.794047619047619,
+      "test_known_recall": 0.46156240273887333,
+      "test_unknown_precision": 0.3140877598152425,
+      "test_unknown_recall": 0.8095238095238095
+    },
+    {
+      "newness_threshold": -1.6572389837941037,
+      "val_known_recall": 0.4852163087457205,
+      "val_unknown_precision": 0.3175146771037182,
+      "val_unknown_recall": 0.7726190476190476,
+      "test_known_recall": 0.4708994708994709,
+      "test_unknown_precision": 0.3122322703474536,
+      "test_unknown_recall": 0.780952380952381
+    },
+    {
+      "newness_threshold": -1.6548330140113832,
+      "val_known_recall": 0.49299719887955185,
+      "val_unknown_precision": 0.3171098845960863,
+      "val_unknown_recall": 0.7523809523809524,
+      "test_known_recall": 0.4786803610333022,
+      "test_unknown_precision": 0.31161886242100145,
+      "test_unknown_recall": 0.763095238095238
+    },
+    {
+      "newness_threshold": -1.6504797027805183,
+      "val_known_recall": 0.49984438219732336,
+      "val_unknown_precision": 0.3161688980432544,
+      "val_unknown_recall": 0.7309523809523809,
+      "test_known_recall": 0.49268596327419856,
+      "test_unknown_precision": 0.316926167754897,
+      "test_unknown_recall": 0.7511904761904762
+    },
+    {
+      "newness_threshold": -1.6481371913921985,
+      "val_known_recall": 0.5082477435418612,
+      "val_unknown_precision": 0.31464833421470123,
+      "val_unknown_recall": 0.7083333333333334,
+      "test_known_recall": 0.49859943977591037,
+      "test_unknown_precision": 0.3176895306859206,
+      "test_unknown_recall": 0.7333333333333333
+    },
+    {
+      "newness_threshold": -1.6456218891988827,
+      "val_known_recall": 0.5144724556489262,
+      "val_unknown_precision": 0.3168478260869565,
+      "val_unknown_recall": 0.694047619047619,
+      "test_known_recall": 0.5060690943043884,
+      "test_unknown_precision": 0.3181336161187699,
+      "test_unknown_recall": 0.7142857142857143
+    },
+    {
+      "newness_threshold": -1.6430124522221239,
+      "val_known_recall": 0.5222533457827575,
+      "val_unknown_precision": 0.3169368362213527,
+      "val_unknown_recall": 0.675,
+      "test_known_recall": 0.5138499844382197,
+      "test_unknown_precision": 0.31986899563318777,
+      "test_unknown_recall": 0.6976190476190476
+    },
+    {
+      "newness_threshold": -1.6396129659459562,
+      "val_known_recall": 0.5322128851540616,
+      "val_unknown_precision": 0.3193325661680092,
+      "val_unknown_recall": 0.6607142857142857,
+      "test_known_recall": 0.5259881730469965,
+      "test_unknown_precision": 0.32163080407701017,
+      "test_unknown_recall": 0.6761904761904762
+    },
+    {
+      "newness_threshold": -1.636833584127547,
+      "val_known_recall": 0.5431061313414255,
+      "val_unknown_precision": 0.3236514522821577,
+      "val_unknown_recall": 0.65,
+      "test_known_recall": 0.5322128851540616,
+      "test_unknown_precision": 0.31923522595596754,
+      "test_unknown_recall": 0.655952380952381
+    },
+    {
+      "newness_threshold": -1.6333596288161942,
+      "val_known_recall": 0.5530656707127295,
+      "val_unknown_precision": 0.3264058679706601,
+      "val_unknown_recall": 0.6357142857142857,
+      "test_known_recall": 0.541238717709306,
+      "test_unknown_precision": 0.3217910447761194,
+      "test_unknown_recall": 0.6416666666666667
+    },
+    {
+      "newness_threshold": -1.6292392043463793,
+      "val_known_recall": 0.5633364456893869,
+      "val_unknown_precision": 0.32870662460567823,
+      "val_unknown_recall": 0.6202380952380953,
+      "test_known_recall": 0.5527544351073763,
+      "test_unknown_precision": 0.32342007434944237,
+      "test_unknown_recall": 0.6214285714285714
+    },
+    {
+      "newness_threshold": -1.6257963008397742,
+      "val_known_recall": 0.5729847494553377,
+      "val_unknown_precision": 0.33572359843546284,
+      "val_unknown_recall": 0.6130952380952381,
+      "test_known_recall": 0.5642701525054467,
+      "test_unknown_precision": 0.3307543520309478,
+      "test_unknown_recall": 0.6107142857142858
+    },
+    {
+      "newness_threshold": -1.624082469155517,
+      "val_known_recall": 0.582010582010582,
+      "val_unknown_precision": 0.3405259608900877,
+      "val_unknown_recall": 0.6011904761904762,
+      "test_known_recall": 0.5711173358232182,
+      "test_unknown_precision": 0.33553500660501984,
+      "test_unknown_recall": 0.6047619047619047
+    },
+    {
+      "newness_threshold": -1.622626331945009,
+      "val_known_recall": 0.5901027077497666,
+      "val_unknown_precision": 0.3400837988826816,
+      "val_unknown_recall": 0.5797619047619048,
+      "test_known_recall": 0.5773420479302832,
+      "test_unknown_precision": 0.33424283765347884,
+      "test_unknown_recall": 0.5833333333333334
+    },
+    {
+      "newness_threshold": -1.620315497845034,
+      "val_known_recall": 0.6006847183317772,
+      "val_unknown_precision": 0.3439536567704562,
+      "val_unknown_recall": 0.5654761904761905,
+      "test_known_recall": 0.5888577653283535,
+      "test_unknown_precision": 0.340667139815472,
+      "test_unknown_recall": 0.5714285714285714
+    },
+    {
+      "newness_threshold": -1.618045243878908,
+      "val_known_recall": 0.6109554933084345,
+      "val_unknown_precision": 0.35639097744360904,
+      "val_unknown_recall": 0.5642857142857143,
+      "test_known_recall": 0.5978835978835979,
+      "test_unknown_precision": 0.3496708119970739,
+      "test_unknown_recall": 0.569047619047619
+    },
+    {
+      "newness_threshold": -1.6159040124989763,
+      "val_known_recall": 0.6202925614690321,
+      "val_unknown_precision": 0.36591086786551996,
+      "val_unknown_recall": 0.5571428571428572,
+      "test_known_recall": 0.6093993152816682,
+      "test_unknown_precision": 0.36003051106025935,
+      "test_unknown_recall": 0.5619047619047619
+    },
+    {
+      "newness_threshold": -1.6142978275576725,
+      "val_known_recall": 0.6274509803921569,
+      "val_unknown_precision": 0.3697068403908795,
+      "val_unknown_recall": 0.5404761904761904,
+      "test_known_recall": 0.6159352629940865,
+      "test_unknown_precision": 0.36550632911392406,
+      "test_unknown_recall": 0.55
+    },
+    {
+      "newness_threshold": -1.6113376836716375,
+      "val_known_recall": 0.6383442265795207,
+      "val_unknown_precision": 0.3780798640611725,
+      "val_unknown_recall": 0.5297619047619048,
+      "test_known_recall": 0.6255835667600373,
+      "test_unknown_precision": 0.36811352253756263,
+      "test_unknown_recall": 0.525
+    },
+    {
+      "newness_threshold": -1.6045827359489249,
+      "val_known_recall": 0.6507936507936508,
+      "val_unknown_precision": 0.38898756660746003,
+      "val_unknown_recall": 0.5214285714285715,
+      "test_known_recall": 0.6399004046062869,
+      "test_unknown_precision": 0.3798245614035088,
+      "test_unknown_recall": 0.5154761904761904
+    },
+    {
+      "newness_threshold": -1.5930415947708902,
+      "val_known_recall": 0.6629318394024276,
+      "val_unknown_precision": 0.39813953488372095,
+      "val_unknown_recall": 0.5095238095238095,
+      "test_known_recall": 0.6520385932150639,
+      "test_unknown_precision": 0.3904674610449129,
+      "test_unknown_recall": 0.5071428571428571
+    },
+    {
+      "newness_threshold": -1.578014806017091,
+      "val_known_recall": 0.6725801431683784,
+      "val_unknown_precision": 0.3984375,
+      "val_unknown_recall": 0.4857142857142857,
+      "test_known_recall": 0.6588857765328353,
+      "test_unknown_precision": 0.39224952741020797,
+      "test_unknown_recall": 0.49404761904761907
+    },
+    {
+      "newness_threshold": -1.5613767621487002,
+      "val_known_recall": 0.6837846249610956,
+      "val_unknown_precision": 0.4039054470709147,
+      "val_unknown_recall": 0.46785714285714286,
+      "test_known_recall": 0.6713352007469654,
+      "test_unknown_precision": 0.3963963963963964,
+      "test_unknown_recall": 0.4714285714285714
+    },
+    {
+      "newness_threshold": -1.542931672047965,
+      "val_known_recall": 0.6940553999377529,
+      "val_unknown_precision": 0.4067245119305857,
+      "val_unknown_recall": 0.44642857142857145,
+      "test_known_recall": 0.6828509181450358,
+      "test_unknown_precision": 0.40232312565997885,
+      "test_unknown_recall": 0.45357142857142857
+    },
+    {
+      "newness_threshold": -1.5298506609820113,
+      "val_known_recall": 0.7058823529411765,
+      "val_unknown_precision": 0.41561423650975887,
+      "val_unknown_recall": 0.430952380952381,
+      "test_known_recall": 0.6934329287270464,
+      "test_unknown_precision": 0.40358744394618834,
+      "test_unknown_recall": 0.42857142857142855
+    },
+    {
+      "newness_threshold": -1.51459740090672,
+      "val_known_recall": 0.7180205415499533,
+      "val_unknown_precision": 0.4268292682926829,
+      "val_unknown_recall": 0.4166666666666667,
+      "test_known_recall": 0.706504824151883,
+      "test_unknown_precision": 0.4117647058823529,
+      "test_unknown_recall": 0.4083333333333333
+    },
+    {
+      "newness_threshold": -1.498792888816399,
+      "val_known_recall": 0.7310924369747899,
+      "val_unknown_precision": 0.4434330299089727,
+      "val_unknown_recall": 0.40595238095238095,
+      "test_known_recall": 0.7233115468409586,
+      "test_unknown_precision": 0.4345006485084306,
+      "test_unknown_recall": 0.39880952380952384
+    },
+    {
+      "newness_threshold": -1.4817342911490912,
+      "val_known_recall": 0.7441643323996265,
+      "val_unknown_precision": 0.4623955431754875,
+      "val_unknown_recall": 0.3952380952380952,
+      "test_known_recall": 0.7357609710550888,
+      "test_unknown_precision": 0.4422535211267606,
+      "test_unknown_recall": 0.3738095238095238
+    },
+    {
+      "newness_threshold": -1.4704571161330502,
+      "val_known_recall": 0.7538126361655774,
+      "val_unknown_precision": 0.46776611694152925,
+      "val_unknown_recall": 0.37142857142857144,
+      "test_known_recall": 0.7450980392156863,
+      "test_unknown_precision": 0.4462934947049924,
+      "test_unknown_recall": 0.35119047619047616
+    },
+    {
+      "newness_threshold": -1.4620367830191987,
+      "val_known_recall": 0.7600373482726424,
+      "val_unknown_precision": 0.45616883116883117,
+      "val_unknown_recall": 0.3345238095238095,
+      "test_known_recall": 0.7519452225334579,
+      "test_unknown_precision": 0.4332784184514003,
+      "test_unknown_recall": 0.3130952380952381
+    },
+    {
+      "newness_threshold": -1.4547141613718833,
+      "val_known_recall": 0.7687519452225334,
+      "val_unknown_precision": 0.45663716814159294,
+      "val_unknown_recall": 0.30714285714285716,
+      "test_known_recall": 0.7606598194833489,
+      "test_unknown_precision": 0.427536231884058,
+      "test_unknown_recall": 0.28095238095238095
+    },
+    {
+      "newness_threshold": -1.4475889113703861,
+      "val_known_recall": 0.776844070961718,
+      "val_unknown_precision": 0.45330739299610895,
+      "val_unknown_recall": 0.2773809523809524,
+      "test_known_recall": 0.7696856520385932,
+      "test_unknown_precision": 0.4213709677419355,
+      "test_unknown_recall": 0.2488095238095238
+    },
+    {
+      "newness_threshold": -1.442854967147489,
+      "val_known_recall": 0.7868036103330222,
+      "val_unknown_precision": 0.46220302375809935,
+      "val_unknown_recall": 0.25476190476190474,
+      "test_known_recall": 0.7765328353563647,
+      "test_unknown_precision": 0.42391304347826086,
+      "test_unknown_recall": 0.23214285714285715
+    },
+    {
+      "newness_threshold": -1.436031760167472,
+      "val_known_recall": 0.7973856209150327,
+      "val_unknown_precision": 0.47815533980582525,
+      "val_unknown_recall": 0.23452380952380952,
+      "test_known_recall": 0.7868036103330222,
+      "test_unknown_precision": 0.4228855721393035,
+      "test_unknown_recall": 0.20238095238095238
+    },
+    {
+      "newness_threshold": -1.4285452438487283,
+      "val_known_recall": 0.806411453470277,
+      "val_unknown_precision": 0.48476454293628807,
+      "val_unknown_recall": 0.20833333333333334,
+      "test_known_recall": 0.8023653906006847,
+      "test_unknown_precision": 0.4451219512195122,
+      "test_unknown_recall": 0.1738095238095238
+    },
+    {
+      "newness_threshold": -1.4223695970185195,
+      "val_known_recall": 0.8166822284469343,
+      "val_unknown_precision": 0.5064516129032258,
+      "val_unknown_recall": 0.1869047619047619,
+      "test_known_recall": 0.813881107998755,
+      "test_unknown_precision": 0.48214285714285715,
+      "test_unknown_recall": 0.16071428571428573
+    },
+    {
+      "newness_threshold": -1.418442081523847,
+      "val_known_recall": 0.8288204170557112,
+      "val_unknown_precision": 0.5637065637065637,
+      "val_unknown_recall": 0.1738095238095238,
+      "test_known_recall": 0.8229069405539994,
+      "test_unknown_precision": 0.522633744855967,
+      "test_unknown_recall": 0.15119047619047618
+    },
+    {
+      "newness_threshold": -1.412453913175607,
+      "val_known_recall": 0.8400248988484282,
+      "val_unknown_precision": 0.6298076923076923,
+      "val_unknown_recall": 0.15595238095238095,
+      "test_known_recall": 0.834733893557423,
+      "test_unknown_precision": 0.5873015873015873,
+      "test_unknown_recall": 0.13214285714285715
+    },
+    {
+      "newness_threshold": -1.4035860434483878,
+      "val_known_recall": 0.8481170245876128,
+      "val_unknown_precision": 0.6772151898734177,
+      "val_unknown_recall": 0.12738095238095237,
+      "test_known_recall": 0.8437597261126673,
+      "test_unknown_precision": 0.6549295774647887,
+      "test_unknown_recall": 0.11071428571428571
+    },
+    {
+      "newness_threshold": -1.3907817795005026,
+      "val_known_recall": 0.8558979147214442,
+      "val_unknown_precision": 0.7570093457943925,
+      "val_unknown_recall": 0.09642857142857143,
+      "test_known_recall": 0.8490507314036726,
+      "test_unknown_precision": 0.68,
+      "test_unknown_recall": 0.08095238095238096
+    },
+    {
+      "newness_threshold": -1.3703084761945508,
+      "val_known_recall": 0.8611889200124494,
+      "val_unknown_precision": 0.8392857142857143,
+      "val_unknown_recall": 0.055952380952380955,
+      "test_known_recall": 0.8552754435107376,
+      "test_unknown_precision": 0.7647058823529411,
+      "test_unknown_recall": 0.04642857142857143
+    },
+    {
+      "newness_threshold": -1.3552695145606997,
+      "val_known_recall": 0.8639900404606287,
+      "val_unknown_precision": 1.0,
+      "val_unknown_recall": 0.005952380952380952,
+      "test_known_recall": 0.8586990351696234,
+      "test_unknown_precision": 0.9,
+      "test_unknown_recall": 0.010714285714285714
+    }
+  ],
+  "pick_by_targets": [
+    {
+      "min_val_known_recall": 0.8,
+      "min_val_unknown_precision": 0.35,
+      "picked": {
+        "newness_threshold": -1.4285452438487283,
+        "val_known_recall": 0.806411453470277,
+        "val_unknown_precision": 0.48476454293628807,
+        "val_unknown_recall": 0.20833333333333334,
+        "test_known_recall": 0.8023653906006847,
+        "test_unknown_precision": 0.4451219512195122,
+        "test_unknown_recall": 0.1738095238095238
+      }
+    },
+    {
+      "min_val_known_recall": 0.8,
+      "min_val_unknown_precision": 0.4,
+      "picked": {
+        "newness_threshold": -1.4285452438487283,
+        "val_known_recall": 0.806411453470277,
+        "val_unknown_precision": 0.48476454293628807,
+        "val_unknown_recall": 0.20833333333333334,
+        "test_known_recall": 0.8023653906006847,
+        "test_unknown_precision": 0.4451219512195122,
+        "test_unknown_recall": 0.1738095238095238
+      }
+    },
+    {
+      "min_val_known_recall": 0.8,
+      "min_val_unknown_precision": 0.45,
+      "picked": {
+        "newness_threshold": -1.4285452438487283,
+        "val_known_recall": 0.806411453470277,
+        "val_unknown_precision": 0.48476454293628807,
+        "val_unknown_recall": 0.20833333333333334,
+        "test_known_recall": 0.8023653906006847,
+        "test_unknown_precision": 0.4451219512195122,
+        "test_unknown_recall": 0.1738095238095238
+      }
+    },
+    {
+      "min_val_known_recall": 0.81,
+      "min_val_unknown_precision": 0.35,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    },
+    {
+      "min_val_known_recall": 0.81,
+      "min_val_unknown_precision": 0.4,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    },
+    {
+      "min_val_known_recall": 0.81,
+      "min_val_unknown_precision": 0.45,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    },
+    {
+      "min_val_known_recall": 0.815,
+      "min_val_unknown_precision": 0.35,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    },
+    {
+      "min_val_known_recall": 0.815,
+      "min_val_unknown_precision": 0.4,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    },
+    {
+      "min_val_known_recall": 0.815,
+      "min_val_unknown_precision": 0.45,
+      "picked": {
+        "newness_threshold": -1.4223695970185195,
+        "val_known_recall": 0.8166822284469343,
+        "val_unknown_precision": 0.5064516129032258,
+        "val_unknown_recall": 0.1869047619047619,
+        "test_known_recall": 0.813881107998755,
+        "test_unknown_precision": 0.48214285714285715,
+        "test_unknown_recall": 0.16071428571428573
+      }
+    }
+  ]
+}

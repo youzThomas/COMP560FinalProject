@@ -1,0 +1,2074 @@
+[
+  {
+    "epoch": 1,
+    "train": {
+      "loss": 2.2374577971838288,
+      "cls": 0.621232532596184,
+      "obj": 0.33891729907906154,
+      "energy_in": 9.873728774361691,
+      "energy_out": 0.5334566605989663,
+      "proto": 2.8610029028633894,
+      "vos": 0.0,
+      "energy_rank": 0.41697961287866486
+    },
+    "val": {
+      "known_recall": 0.5122938064114535,
+      "per_class_recall": {
+        "0": 0.6721311475409836,
+        "1": 0.40631469979296064
+      },
+      "unknown_precision": 0.3517397881996974,
+      "unknown_recall": 0.5535714285714286,
+      "binary_accuracy": 0.7707870713052061,
+      "confusion_matrix": [
+        [
+          465,
+          94,
+          281
+        ],
+        [
+          125,
+          861,
+          295
+        ],
+        [
+          732,
+          415,
+          785
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -3.6183486896790797
+      },
+      "auroc_newness": 0.6652329450298637,
+      "aupr_newness": 0.39261343775765367,
+      "auroc_energy": 0.5471716464363523,
+      "auroc_dist": 0.7360158878366162,
+      "tag": "val",
+      "tuned_newness_threshold": -3.6183486896790797,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 2,
+    "train": {
+      "loss": 0.8259961948556415,
+      "cls": 0.5073244766158572,
+      "obj": 0.007056234659966461,
+      "energy_in": 0.06168934876425341,
+      "energy_out": 0.0010361534471907798,
+      "proto": 1.233916835259583,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.7117958294428882,
+      "per_class_recall": {
+        "0": 0.8766588602654176,
+        "1": 0.6024844720496895
+      },
+      "unknown_precision": 0.540453074433657,
+      "unknown_recall": 0.1988095238095238,
+      "binary_accuracy": 0.763631877621515,
+      "confusion_matrix": [
+        [
+          167,
+          136,
+          537
+        ],
+        [
+          38,
+          1123,
+          120
+        ],
+        [
+          104,
+          664,
+          1164
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -2.1338246323747456
+      },
+      "auroc_newness": 0.47631163576541724,
+      "aupr_newness": 0.3178834248845984,
+      "auroc_energy": 0.3716429164258296,
+      "auroc_dist": 0.608759614957094,
+      "tag": "val",
+      "tuned_newness_threshold": -2.1338246323747456,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 3,
+    "train": {
+      "loss": 0.769439472990521,
+      "cls": 0.4782145669904806,
+      "obj": 0.0012342358707012292,
+      "energy_in": 0.0066927080489083395,
+      "energy_out": 0.00015383866119302907,
+      "proto": 1.158593377824557,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.7189542483660131,
+      "per_class_recall": {
+        "0": 0.7829820452771272,
+        "1": 0.6765010351966874
+      },
+      "unknown_precision": 0.5414634146341464,
+      "unknown_recall": 0.2642857142857143,
+      "binary_accuracy": 0.8107574636072046,
+      "confusion_matrix": [
+        [
+          222,
+          51,
+          567
+        ],
+        [
+          1,
+          1003,
+          277
+        ],
+        [
+          187,
+          438,
+          1307
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.7842983077906962
+      },
+      "auroc_newness": 0.6862967409185896,
+      "aupr_newness": 0.38340021048147915,
+      "auroc_energy": 0.701653809672017,
+      "auroc_dist": 0.649831784565678,
+      "tag": "val",
+      "tuned_newness_threshold": -1.7842983077906962,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 4,
+    "train": {
+      "loss": 0.7397214507652541,
+      "cls": 0.45685296619342547,
+      "obj": 0.0005138731422001432,
+      "energy_in": 0.005336015202056318,
+      "energy_out": 2.813213476660975e-05,
+      "proto": 1.12834561578298,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.48023653906006847,
+      "per_class_recall": {
+        "0": 0.8087431693989071,
+        "1": 0.26242236024844723
+      },
+      "unknown_precision": 0.3504566210045662,
+      "unknown_recall": 0.7309523809523809,
+      "binary_accuracy": 0.7895386133728103,
+      "confusion_matrix": [
+        [
+          614,
+          97,
+          129
+        ],
+        [
+          224,
+          1036,
+          21
+        ],
+        [
+          914,
+          511,
+          507
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.8321197851199025
+      },
+      "auroc_newness": 0.7368927200509834,
+      "aupr_newness": 0.37658185191266974,
+      "auroc_energy": 0.8024055918663761,
+      "auroc_dist": 0.5795336653179791,
+      "tag": "val",
+      "tuned_newness_threshold": -1.8321197851199025,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 5,
+    "train": {
+      "loss": 0.7024951986337112,
+      "cls": 0.42905616154104975,
+      "obj": 0.0003633460473176487,
+      "energy_in": 0.003957627602469105,
+      "energy_out": 0.0002058452758753651,
+      "proto": 1.0914700799069161,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.721444133208839,
+      "per_class_recall": {
+        "0": 0.7283372365339579,
+        "1": 0.7168737060041408
+      },
+      "unknown_precision": 0.3600867678958785,
+      "unknown_recall": 0.1976190476190476,
+      "binary_accuracy": 0.8517147791759191,
+      "confusion_matrix": [
+        [
+          166,
+          1,
+          673
+        ],
+        [
+          0,
+          933,
+          348
+        ],
+        [
+          295,
+          252,
+          1385
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.606787582883295
+      },
+      "auroc_newness": 0.7049077038222696,
+      "aupr_newness": 0.31404094597187826,
+      "auroc_energy": 0.7370533398544603,
+      "auroc_dist": 0.5160416018259155,
+      "tag": "val",
+      "tuned_newness_threshold": -1.606787582883295,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 6,
+    "train": {
+      "loss": 0.6896773415096735,
+      "cls": 0.41935504745628877,
+      "obj": 0.0002170905564078998,
+      "energy_in": 0.0032446388110148,
+      "energy_out": 1.980525735752498e-05,
+      "proto": 1.0797679318209825,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.552443199502023,
+      "per_class_recall": {
+        "0": 0.7572209211553473,
+        "1": 0.4166666666666667
+      },
+      "unknown_precision": 0.3575305291723202,
+      "unknown_recall": 0.6273809523809524,
+      "binary_accuracy": 0.8623242042931162,
+      "confusion_matrix": [
+        [
+          527,
+          10,
+          303
+        ],
+        [
+          57,
+          970,
+          254
+        ],
+        [
+          890,
+          237,
+          805
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.7184603433429069
+      },
+      "auroc_newness": 0.7353873030693758,
+      "aupr_newness": 0.34104612380690597,
+      "auroc_energy": 0.7462427563618039,
+      "auroc_dist": 0.5345556741215004,
+      "tag": "val",
+      "tuned_newness_threshold": -1.7184603433429069,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 7,
+    "train": {
+      "loss": 0.6698580490330518,
+      "cls": 0.40486951399657684,
+      "obj": 0.00016359831074546721,
+      "energy_in": 0.002999538929944427,
+      "energy_out": 8.825158747698478e-05,
+      "proto": 1.0586821871288752,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5362589480236539,
+      "per_class_recall": {
+        "0": 0.7876658860265418,
+        "1": 0.3695652173913043
+      },
+      "unknown_precision": 0.299647473560517,
+      "unknown_recall": 0.6071428571428571,
+      "binary_accuracy": 0.8613372810264002,
+      "confusion_matrix": [
+        [
+          510,
+          15,
+          315
+        ],
+        [
+          249,
+          1009,
+          23
+        ],
+        [
+          943,
+          275,
+          714
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.7404491474673434
+      },
+      "auroc_newness": 0.6583370385191114,
+      "aupr_newness": 0.2751265822544998,
+      "auroc_energy": 0.6756302521008403,
+      "auroc_dist": 0.49060976242348797,
+      "tag": "val",
+      "tuned_newness_threshold": -1.7404491474673434,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 8,
+    "train": {
+      "loss": 0.6498782922655849,
+      "cls": 0.38896733623439983,
+      "obj": 0.00014131200885581706,
+      "energy_in": 0.0024390946747997297,
+      "energy_out": 3.757550478790136e-05,
+      "proto": 1.0425832473625571,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8042328042328042,
+      "per_class_recall": {
+        "0": 0.7213114754098361,
+        "1": 0.8592132505175983
+      },
+      "unknown_precision": 0.3905579399141631,
+      "unknown_recall": 0.10833333333333334,
+      "binary_accuracy": 0.8754009375771034,
+      "confusion_matrix": [
+        [
+          91,
+          18,
+          731
+        ],
+        [
+          0,
+          924,
+          357
+        ],
+        [
+          142,
+          130,
+          1660
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5306406316667232
+      },
+      "auroc_newness": 0.6455437730647815,
+      "aupr_newness": 0.3353131522155779,
+      "auroc_energy": 0.62798637973708,
+      "auroc_dist": 0.5262164124909223,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5306406316667232,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 9,
+    "train": {
+      "loss": 0.6303036586712982,
+      "cls": 0.3739082985005136,
+      "obj": 0.00010930442667967774,
+      "energy_in": 0.0016756162577338328,
+      "energy_out": 6.110260762871973e-05,
+      "proto": 1.024796878887435,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8011204481792717,
+      "per_class_recall": {
+        "0": 0.8259172521467604,
+        "1": 0.7846790890269151
+      },
+      "unknown_precision": 0.38181818181818183,
+      "unknown_recall": 0.025,
+      "binary_accuracy": 0.8430792005921539,
+      "confusion_matrix": [
+        [
+          21,
+          31,
+          788
+        ],
+        [
+          0,
+          1058,
+          223
+        ],
+        [
+          34,
+          382,
+          1516
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4614125000515823
+      },
+      "auroc_newness": 0.7316804499577609,
+      "aupr_newness": 0.35956748688765117,
+      "auroc_energy": 0.7489847790968238,
+      "auroc_dist": 0.6355951639915226,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4614125000515823,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 10,
+    "train": {
+      "loss": 0.6306086010852102,
+      "cls": 0.3743689603219598,
+      "obj": 9.238554242583015e-05,
+      "energy_in": 0.0019320791448177198,
+      "energy_out": 0.00010215699527633607,
+      "proto": 1.0241821675987568,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8011204481792717,
+      "per_class_recall": {
+        "0": 0.8836846213895394,
+        "1": 0.7463768115942029
+      },
+      "unknown_precision": 0.5339805825242718,
+      "unknown_recall": 0.19642857142857142,
+      "binary_accuracy": 0.8601036269430051,
+      "confusion_matrix": [
+        [
+          165,
+          72,
+          603
+        ],
+        [
+          0,
+          1132,
+          149
+        ],
+        [
+          144,
+          346,
+          1442
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4026105179156898
+      },
+      "auroc_newness": 0.7679410653150148,
+      "aupr_newness": 0.46678259154557816,
+      "auroc_energy": 0.770845189927823,
+      "auroc_dist": 0.6719743452936731,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4026105179156898,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 11,
+    "train": {
+      "loss": 0.6201742326809188,
+      "cls": 0.3661210584943577,
+      "obj": 7.991698556120894e-05,
+      "energy_in": 0.0018253814325431695,
+      "energy_out": 6.46072935108681e-05,
+      "proto": 1.0155150122561698,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8008092125739185,
+      "per_class_recall": {
+        "0": 0.8524590163934426,
+        "1": 0.7665631469979296
+      },
+      "unknown_precision": 0.3875968992248062,
+      "unknown_recall": 0.11904761904761904,
+      "binary_accuracy": 0.848260547742413,
+      "confusion_matrix": [
+        [
+          100,
+          116,
+          624
+        ],
+        [
+          17,
+          1092,
+          172
+        ],
+        [
+          141,
+          310,
+          1481
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5682540424994702
+      },
+      "auroc_newness": 0.6975058541935293,
+      "aupr_newness": 0.33384269206990513,
+      "auroc_energy": 0.6605614468009426,
+      "auroc_dist": 0.5628471759074,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5682540424994702,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 12,
+    "train": {
+      "loss": 0.6104921658160323,
+      "cls": 0.35890342067863984,
+      "obj": 6.130273591147902e-05,
+      "energy_in": 0.0013771560938540563,
+      "energy_out": 2.3572898726222397e-05,
+      "proto": 1.0058296358181258,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8017429193899782,
+      "per_class_recall": {
+        "0": 0.7915690866510539,
+        "1": 0.8084886128364389
+      },
+      "unknown_precision": 0.4336569579288026,
+      "unknown_recall": 0.1595238095238095,
+      "binary_accuracy": 0.8724401677769553,
+      "confusion_matrix": [
+        [
+          134,
+          41,
+          665
+        ],
+        [
+          14,
+          1014,
+          253
+        ],
+        [
+          161,
+          209,
+          1562
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.536435881371768
+      },
+      "auroc_newness": 0.7155238021134379,
+      "aupr_newness": 0.3584600418654135,
+      "auroc_energy": 0.6583172157751989,
+      "auroc_dist": 0.5894932046892831,
+      "tag": "val",
+      "tuned_newness_threshold": -1.536435881371768,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 13,
+    "train": {
+      "loss": 0.6160895026336282,
+      "cls": 0.3630251525822332,
+      "obj": 5.9585759302890284e-05,
+      "energy_in": 0.0013088513765327388,
+      "energy_out": 8.84851199472129e-05,
+      "proto": 1.011739586369466,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8032990974167444,
+      "per_class_recall": {
+        "0": 0.8017174082747853,
+        "1": 0.8043478260869565
+      },
+      "unknown_precision": 0.4649350649350649,
+      "unknown_recall": 0.2130952380952381,
+      "binary_accuracy": 0.8887244016777696,
+      "confusion_matrix": [
+        [
+          179,
+          23,
+          638
+        ],
+        [
+          2,
+          1027,
+          252
+        ],
+        [
+          204,
+          174,
+          1554
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4912562724599299
+      },
+      "auroc_newness": 0.7697078831532612,
+      "aupr_newness": 0.4319546403143132,
+      "auroc_energy": 0.7712549834748713,
+      "auroc_dist": 0.624091117928653,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4912562724599299,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 14,
+    "train": {
+      "loss": 0.6064077464200682,
+      "cls": 0.3560770166627431,
+      "obj": 5.5649027918831454e-05,
+      "energy_in": 0.0012168356100244857,
+      "energy_out": 2.3198713772556296e-05,
+      "proto": 1.0008523216692067,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8029878618113913,
+      "per_class_recall": {
+        "0": 0.8587041373926619,
+        "1": 0.7660455486542443
+      },
+      "unknown_precision": 0.4883116883116883,
+      "unknown_recall": 0.22380952380952382,
+      "binary_accuracy": 0.8771280532938565,
+      "confusion_matrix": [
+        [
+          188,
+          62,
+          590
+        ],
+        [
+          0,
+          1100,
+          181
+        ],
+        [
+          197,
+          255,
+          1480
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4680143827582306
+      },
+      "auroc_newness": 0.7467001615461,
+      "aupr_newness": 0.43385926717689216,
+      "auroc_energy": 0.7314485053280573,
+      "auroc_dist": 0.6327347605708951,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4680143827582306,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 15,
+    "train": {
+      "loss": 0.6069978081573875,
+      "cls": 0.35618217440985017,
+      "obj": 4.911158180606188e-05,
+      "energy_in": 0.0013577659795959397,
+      "energy_out": 3.930203376542737e-05,
+      "proto": 1.0027866792880882,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8011204481792717,
+      "per_class_recall": {
+        "0": 0.7931303669008587,
+        "1": 0.8064182194616977
+      },
+      "unknown_precision": 0.4170731707317073,
+      "unknown_recall": 0.20357142857142857,
+      "binary_accuracy": 0.8914384406612386,
+      "confusion_matrix": [
+        [
+          171,
+          36,
+          633
+        ],
+        [
+          4,
+          1016,
+          261
+        ],
+        [
+          235,
+          139,
+          1558
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4922839061958986
+      },
+      "auroc_newness": 0.7458468572614231,
+      "aupr_newness": 0.39716183346169553,
+      "auroc_energy": 0.7627880781942407,
+      "auroc_dist": 0.6166162761400856,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4922839061958986,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 16,
+    "train": {
+      "loss": 0.5955332760083474,
+      "cls": 0.34773426111471856,
+      "obj": 4.223901590702846e-05,
+      "energy_in": 0.0013356390386227675,
+      "energy_out": 3.909978389951787e-05,
+      "proto": 0.9907521453954405,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.800186741363212,
+      "per_class_recall": {
+        "0": 0.8149882903981265,
+        "1": 0.7903726708074534
+      },
+      "unknown_precision": 0.4311377245508982,
+      "unknown_recall": 0.17142857142857143,
+      "binary_accuracy": 0.8761411300271403,
+      "confusion_matrix": [
+        [
+          144,
+          50,
+          646
+        ],
+        [
+          0,
+          1044,
+          237
+        ],
+        [
+          190,
+          215,
+          1527
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4342030728987927
+      },
+      "auroc_newness": 0.737731574111126,
+      "aupr_newness": 0.40914371146878414,
+      "auroc_energy": 0.7442893824196346,
+      "auroc_dist": 0.6225708802039334,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4342030728987927,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 17,
+    "train": {
+      "loss": 0.5902691690598504,
+      "cls": 0.34367391239788575,
+      "obj": 4.122849215984727e-05,
+      "energy_in": 0.000994316418081619,
+      "energy_out": 5.6119320143400324e-05,
+      "proto": 0.9860060341277365,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8061002178649237,
+      "per_class_recall": {
+        "0": 0.8844652615144418,
+        "1": 0.7541407867494824
+      },
+      "unknown_precision": 0.4373259052924791,
+      "unknown_recall": 0.1869047619047619,
+      "binary_accuracy": 0.8704663212435233,
+      "confusion_matrix": [
+        [
+          157,
+          86,
+          597
+        ],
+        [
+          18,
+          1133,
+          130
+        ],
+        [
+          184,
+          291,
+          1457
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4971346502034169
+      },
+      "auroc_newness": 0.7219519289197162,
+      "aupr_newness": 0.36934149130301874,
+      "auroc_energy": 0.6924019607843137,
+      "auroc_dist": 0.6320428171268508,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4971346502034169,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 18,
+    "train": {
+      "loss": 0.5844018987174762,
+      "cls": 0.33922352730217625,
+      "obj": 3.802002537036137e-05,
+      "energy_in": 0.0014181221059685813,
+      "energy_out": 1.1341198001906702e-05,
+      "proto": 0.9802755117416382,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8036103330220977,
+      "per_class_recall": {
+        "0": 0.7876658860265418,
+        "1": 0.8141821946169773
+      },
+      "unknown_precision": 0.45403899721448465,
+      "unknown_recall": 0.19404761904761905,
+      "binary_accuracy": 0.8788551690106094,
+      "confusion_matrix": [
+        [
+          163,
+          52,
+          625
+        ],
+        [
+          4,
+          1009,
+          268
+        ],
+        [
+          192,
+          167,
+          1573
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4509277462209547
+      },
+      "auroc_newness": 0.7019283639381679,
+      "aupr_newness": 0.3512564875663235,
+      "auroc_energy": 0.6638090421353726,
+      "auroc_dist": 0.6308088050034829,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4509277462209547,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 19,
+    "train": {
+      "loss": 0.5824434875936831,
+      "cls": 0.33816243240893895,
+      "obj": 3.144834789640361e-05,
+      "energy_in": 0.0006905290361357394,
+      "energy_out": 1.6310440914414755e-05,
+      "proto": 0.9768570580724942,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8711484593837535,
+      "per_class_recall": {
+        "0": 0.8017174082747853,
+        "1": 0.917184265010352
+      },
+      "unknown_precision": 0.4,
+      "unknown_recall": 0.014285714285714285,
+      "binary_accuracy": 0.8921786331112755,
+      "confusion_matrix": [
+        [
+          12,
+          35,
+          793
+        ],
+        [
+          6,
+          1027,
+          248
+        ],
+        [
+          12,
+          148,
+          1772
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5181401623599935
+      },
+      "auroc_newness": 0.7184744268077602,
+      "aupr_newness": 0.3221583613286857,
+      "auroc_energy": 0.7121732026143791,
+      "auroc_dist": 0.6016213892964594,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5181401623599935,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 20,
+    "train": {
+      "loss": 0.5815698112976753,
+      "cls": 0.3371996576503172,
+      "obj": 2.8728787830174443e-05,
+      "energy_in": 0.0008192452915108781,
+      "energy_out": 2.0156213818433755e-05,
+      "proto": 0.977197821867668,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8141923436041083,
+      "per_class_recall": {
+        "0": 0.7564402810304449,
+        "1": 0.8524844720496895
+      },
+      "unknown_precision": 0.35357917570498915,
+      "unknown_recall": 0.19404761904761905,
+      "binary_accuracy": 0.8939057488280286,
+      "confusion_matrix": [
+        [
+          163,
+          18,
+          659
+        ],
+        [
+          113,
+          969,
+          199
+        ],
+        [
+          185,
+          100,
+          1647
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5107140345843333
+      },
+      "auroc_newness": 0.7112702488402768,
+      "aupr_newness": 0.32076604715111606,
+      "auroc_energy": 0.7152879670386674,
+      "auroc_dist": 0.6019624516473255,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5107140345843333,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 21,
+    "train": {
+      "loss": 0.5748454648054252,
+      "cls": 0.3321863140090037,
+      "obj": 2.4684404151985752e-05,
+      "energy_in": 0.0008363824242071702,
+      "energy_out": 1.859690014409364e-05,
+      "proto": 0.970366857819638,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8032990974167444,
+      "per_class_recall": {
+        "0": 0.8352849336455894,
+        "1": 0.7820910973084886
+      },
+      "unknown_precision": 0.4403470715835141,
+      "unknown_recall": 0.24166666666666667,
+      "binary_accuracy": 0.8934122871946706,
+      "confusion_matrix": [
+        [
+          203,
+          51,
+          586
+        ],
+        [
+          7,
+          1070,
+          204
+        ],
+        [
+          251,
+          170,
+          1511
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.497143646276222
+      },
+      "auroc_newness": 0.7172737613563944,
+      "aupr_newness": 0.37683874188928534,
+      "auroc_energy": 0.6894265113452789,
+      "auroc_dist": 0.5670896136232271,
+      "tag": "val",
+      "tuned_newness_threshold": -1.497143646276222,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 22,
+    "train": {
+      "loss": 0.569325790314351,
+      "cls": 0.3279771144359799,
+      "obj": 2.5113904199716377e-05,
+      "energy_in": 0.0009747184291207255,
+      "energy_out": 2.3457926029488292e-05,
+      "proto": 0.9650946163525016,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.510426392779334,
+      "per_class_recall": {
+        "0": 0.6565183450429352,
+        "1": 0.4135610766045549
+      },
+      "unknown_precision": 0.2967436974789916,
+      "unknown_recall": 0.6726190476190477,
+      "binary_accuracy": 0.8433259314088329,
+      "confusion_matrix": [
+        [
+          565,
+          25,
+          250
+        ],
+        [
+          376,
+          841,
+          64
+        ],
+        [
+          963,
+          170,
+          799
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5957755322276421
+      },
+      "auroc_newness": 0.6607255865309086,
+      "aupr_newness": 0.2629567847090156,
+      "auroc_energy": 0.7290356883494138,
+      "auroc_dist": 0.4970406681190995,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5957755322276421,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 23,
+    "train": {
+      "loss": 0.5705238307936716,
+      "cls": 0.328678655548621,
+      "obj": 2.1961844217681356e-05,
+      "energy_in": 0.0007152571193869027,
+      "energy_out": 2.50522140932243e-05,
+      "proto": 0.9671447701373342,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.8023653906006847,
+      "per_class_recall": {
+        "0": 0.8157689305230289,
+        "1": 0.7934782608695652
+      },
+      "unknown_precision": 0.362116991643454,
+      "unknown_recall": 0.15476190476190477,
+      "binary_accuracy": 0.8865038243276585,
+      "confusion_matrix": [
+        [
+          130,
+          52,
+          658
+        ],
+        [
+          2,
+          1045,
+          234
+        ],
+        [
+          227,
+          172,
+          1533
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.4911235168295087
+      },
+      "auroc_newness": 0.700236946630504,
+      "aupr_newness": 0.33752506612421934,
+      "auroc_energy": 0.6867563692143523,
+      "auroc_dist": 0.5806776414269412,
+      "tag": "val",
+      "tuned_newness_threshold": -1.4911235168295087,
+      "threshold_selection_mode": "meets_known_and_precision"
+    }
+  },
+  {
+    "epoch": 24,
+    "train": {
+      "loss": 0.558868104876098,
+      "cls": 0.3202570203249737,
+      "obj": 2.1551021283380963e-05,
+      "energy_in": 0.0006974479635604347,
+      "energy_out": 1.5470127080380596e-06,
+      "proto": 0.9542183436579623,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.580765639589169,
+      "per_class_recall": {
+        "0": 0.8587041373926619,
+        "1": 0.39648033126293997
+      },
+      "unknown_precision": 0.35083532219570407,
+      "unknown_recall": 0.7,
+      "binary_accuracy": 0.8936590180113496,
+      "confusion_matrix": [
+        [
+          588,
+          53,
+          199
+        ],
+        [
+          119,
+          1100,
+          62
+        ],
+        [
+          969,
+          197,
+          766
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5643064672811975
+      },
+      "auroc_newness": 0.711835474930713,
+      "aupr_newness": 0.30624731825313345,
+      "auroc_energy": 0.7265382078757427,
+      "auroc_dist": 0.6013307174721741,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5643064672811975,
+      "threshold_selection_mode": "meets_precision_target"
+    }
+  },
+  {
+    "epoch": 25,
+    "train": {
+      "loss": 0.5578324352785692,
+      "cls": 0.3189861201128717,
+      "obj": 1.8868012202185158e-05,
+      "energy_in": 0.0006157982145550242,
+      "energy_out": 1.0864273586406144e-05,
+      "proto": 0.9551844601914034,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.6451914098972923,
+      "per_class_recall": {
+        "0": 0.8469945355191257,
+        "1": 0.5113871635610766
+      },
+      "unknown_precision": 0.33746355685131196,
+      "unknown_recall": 0.5511904761904762,
+      "binary_accuracy": 0.8968665186281767,
+      "confusion_matrix": [
+        [
+          463,
+          49,
+          328
+        ],
+        [
+          138,
+          1085,
+          58
+        ],
+        [
+          771,
+          173,
+          988
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5670294816089125
+      },
+      "auroc_newness": 0.6879842677811866,
+      "aupr_newness": 0.2967019507265297,
+      "auroc_energy": 0.6945526358691625,
+      "auroc_dist": 0.5551048197056601,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5670294816089125,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 26,
+    "train": {
+      "loss": 0.5606694466481774,
+      "cls": 0.32171964026608707,
+      "obj": 1.6774560108233807e-05,
+      "energy_in": 0.0007027584093182498,
+      "energy_out": 6.339545418579631e-06,
+      "proto": 0.9555903102381754,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.6112667289137877,
+      "per_class_recall": {
+        "0": 0.8243559718969555,
+        "1": 0.4699792960662526
+      },
+      "unknown_precision": 0.330625,
+      "unknown_recall": 0.6297619047619047,
+      "binary_accuracy": 0.9013076733283987,
+      "confusion_matrix": [
+        [
+          529,
+          42,
+          269
+        ],
+        [
+          180,
+          1056,
+          45
+        ],
+        [
+          891,
+          133,
+          908
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5876653635456877
+      },
+      "auroc_newness": 0.6865642553317625,
+      "aupr_newness": 0.27994925049988534,
+      "auroc_energy": 0.7044158404102381,
+      "auroc_dist": 0.5433582692336194,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5876653635456877,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 27,
+    "train": {
+      "loss": 0.5480148676088301,
+      "cls": 0.31197790485822546,
+      "obj": 1.4566776818833591e-05,
+      "energy_in": 0.00046725440804532237,
+      "energy_out": 2.3985668884434094e-06,
+      "proto": 0.9439956555932255,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.6109554933084345,
+      "per_class_recall": {
+        "0": 0.7697111631537861,
+        "1": 0.5056935817805382
+      },
+      "unknown_precision": 0.3300524934383202,
+      "unknown_recall": 0.5988095238095238,
+      "binary_accuracy": 0.8931655563779917,
+      "confusion_matrix": [
+        [
+          503,
+          9,
+          328
+        ],
+        [
+          195,
+          986,
+          100
+        ],
+        [
+          826,
+          129,
+          977
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5274656448634165
+      },
+      "auroc_newness": 0.6767723756169134,
+      "aupr_newness": 0.2807233024850028,
+      "auroc_energy": 0.7141534391534392,
+      "auroc_dist": 0.5002541757443718,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5274656448634165,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 28,
+    "train": {
+      "loss": 0.5458404570817947,
+      "cls": 0.3101559382374004,
+      "obj": 1.3937864346420826e-05,
+      "energy_in": 0.0005178268357959954,
+      "energy_out": 4.4567115680165136e-05,
+      "proto": 0.9425698478343123,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5605353252412076,
+      "per_class_recall": {
+        "0": 0.8079625292740047,
+        "1": 0.39648033126293997
+      },
+      "unknown_precision": 0.3067110371602884,
+      "unknown_recall": 0.6583333333333333,
+      "binary_accuracy": 0.8939057488280286,
+      "confusion_matrix": [
+        [
+          553,
+          53,
+          234
+        ],
+        [
+          215,
+          1035,
+          31
+        ],
+        [
+          1035,
+          131,
+          766
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5768903497150109
+      },
+      "auroc_newness": 0.6538869251404265,
+      "aupr_newness": 0.26165881470381674,
+      "auroc_energy": 0.684476197886562,
+      "auroc_dist": 0.5467959405984616,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5768903497150109,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 29,
+    "train": {
+      "loss": 0.5397787515894842,
+      "cls": 0.3057967074594255,
+      "obj": 1.1741578781134271e-05,
+      "energy_in": 0.0006350000315880368,
+      "energy_out": 5.75852051289245e-06,
+      "proto": 0.9357530504970227,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5583566760037348,
+      "per_class_recall": {
+        "0": 0.7868852459016393,
+        "1": 0.40683229813664595
+      },
+      "unknown_precision": 0.3036529680365297,
+      "unknown_recall": 0.6333333333333333,
+      "binary_accuracy": 0.8939057488280286,
+      "confusion_matrix": [
+        [
+          532,
+          22,
+          286
+        ],
+        [
+          209,
+          1008,
+          64
+        ],
+        [
+          1011,
+          135,
+          786
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5831117283623173
+      },
+      "auroc_newness": 0.6510837668400694,
+      "aupr_newness": 0.2573274571626845,
+      "auroc_energy": 0.6714628443970181,
+      "auroc_dist": 0.5126895202525454,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5831117283623173,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 30,
+    "train": {
+      "loss": 0.5402395134255037,
+      "cls": 0.30580742669812705,
+      "obj": 1.243484543766052e-05,
+      "energy_in": 0.000467523403907126,
+      "energy_out": 2.0718174555903237e-05,
+      "proto": 0.9375809537152112,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5284780578898226,
+      "per_class_recall": {
+        "0": 0.7455113192818111,
+        "1": 0.38457556935817805
+      },
+      "unknown_precision": 0.28413865546218486,
+      "unknown_recall": 0.6440476190476191,
+      "binary_accuracy": 0.8894645941278065,
+      "confusion_matrix": [
+        [
+          541,
+          29,
+          270
+        ],
+        [
+          267,
+          955,
+          59
+        ],
+        [
+          1096,
+          93,
+          743
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.6168433903838104
+      },
+      "auroc_newness": 0.6174145584159589,
+      "aupr_newness": 0.24122428769537516,
+      "auroc_energy": 0.6283329998666134,
+      "auroc_dist": 0.4939633260711692,
+      "tag": "val",
+      "tuned_newness_threshold": -1.6168433903838104,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 31,
+    "train": {
+      "loss": 0.5355977906008899,
+      "cls": 0.302353182965416,
+      "obj": 1.1867181964882578e-05,
+      "energy_in": 0.0005606125212057893,
+      "energy_out": 0.00010470175514251808,
+      "proto": 0.932797890093367,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.49828820417055714,
+      "per_class_recall": {
+        "0": 0.741608118657299,
+        "1": 0.33695652173913043
+      },
+      "unknown_precision": 0.2688330871491876,
+      "unknown_recall": 0.65,
+      "binary_accuracy": 0.8845299777942265,
+      "confusion_matrix": [
+        [
+          546,
+          46,
+          248
+        ],
+        [
+          295,
+          950,
+          36
+        ],
+        [
+          1190,
+          91,
+          651
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.6238301465256408
+      },
+      "auroc_newness": 0.5994664532479659,
+      "aupr_newness": 0.23194577482888262,
+      "auroc_energy": 0.6261111852148267,
+      "auroc_dist": 0.4893435151838513,
+      "tag": "val",
+      "tuned_newness_threshold": -1.6238301465256408,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 32,
+    "train": {
+      "loss": 0.5314049819263361,
+      "cls": 0.2993691293364864,
+      "obj": 1.1111704383191695e-05,
+      "energy_in": 0.0003896930672704508,
+      "energy_out": 5.287374559515001e-06,
+      "proto": 0.9280199661093244,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.291005291005291,
+      "per_class_recall": {
+        "0": 0.6471506635441062,
+        "1": 0.054865424430641824
+      },
+      "unknown_precision": 0.2665094339622642,
+      "unknown_recall": 0.9416666666666667,
+      "binary_accuracy": 0.8603503577596842,
+      "confusion_matrix": [
+        [
+          791,
+          30,
+          19
+        ],
+        [
+          435,
+          829,
+          17
+        ],
+        [
+          1742,
+          84,
+          106
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.7706597701828435
+      },
+      "auroc_newness": 0.5979788211580929,
+      "aupr_newness": 0.22761117484086144,
+      "auroc_energy": 0.6398211136306374,
+      "auroc_dist": 0.49061606123931056,
+      "tag": "val",
+      "tuned_newness_threshold": -1.7706597701828435,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 33,
+    "train": {
+      "loss": 0.5288094933760368,
+      "cls": 0.2972487952497046,
+      "obj": 1.0293437680494686e-05,
+      "energy_in": 0.0005479723850917985,
+      "energy_out": 3.4508503945116284e-05,
+      "proto": 0.926085137714774,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5459072517896048,
+      "per_class_recall": {
+        "0": 0.795472287275566,
+        "1": 0.3804347826086957
+      },
+      "unknown_precision": 0.2853290183387271,
+      "unknown_recall": 0.6297619047619047,
+      "binary_accuracy": 0.9008142116950407,
+      "confusion_matrix": [
+        [
+          529,
+          33,
+          278
+        ],
+        [
+          235,
+          1019,
+          27
+        ],
+        [
+          1090,
+          107,
+          735
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.6126314791703373
+      },
+      "auroc_newness": 0.6365018229514028,
+      "aupr_newness": 0.2502607210300942,
+      "auroc_energy": 0.6527714789619552,
+      "auroc_dist": 0.5209724630592978,
+      "tag": "val",
+      "tuned_newness_threshold": -1.6126314791703373,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 34,
+    "train": {
+      "loss": 0.5262718574475433,
+      "cls": 0.2954475344237635,
+      "obj": 1.1226082733628573e-05,
+      "energy_in": 0.00041233607393034954,
+      "energy_out": 3.9869539092317215e-05,
+      "proto": 0.9231619476261785,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5465297230003112,
+      "per_class_recall": {
+        "0": 0.7697111631537861,
+        "1": 0.39855072463768115
+      },
+      "unknown_precision": 0.27680525164113784,
+      "unknown_recall": 0.6023809523809524,
+      "binary_accuracy": 0.8924253639279546,
+      "confusion_matrix": [
+        [
+          506,
+          49,
+          285
+        ],
+        [
+          252,
+          986,
+          43
+        ],
+        [
+          1070,
+          92,
+          770
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.5967169366332719
+      },
+      "auroc_newness": 0.6134639040801506,
+      "aupr_newness": 0.23897673733202474,
+      "auroc_energy": 0.6275004446222934,
+      "auroc_dist": 0.4958086938479096,
+      "tag": "val",
+      "tuned_newness_threshold": -1.5967169366332719,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 35,
+    "train": {
+      "loss": 0.525302054013236,
+      "cls": 0.29487578293024486,
+      "obj": 1.1136138443932504e-05,
+      "energy_in": 0.0004095801672277606,
+      "energy_out": 4.2190950819269226e-05,
+      "proto": 0.9215701752800053,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5262994086523498,
+      "per_class_recall": {
+        "0": 0.7704918032786885,
+        "1": 0.36438923395445133
+      },
+      "unknown_precision": 0.28031088082901556,
+      "unknown_recall": 0.6440476190476191,
+      "binary_accuracy": 0.8941524796447077,
+      "confusion_matrix": [
+        [
+          541,
+          34,
+          265
+        ],
+        [
+          262,
+          987,
+          32
+        ],
+        [
+          1127,
+          101,
+          704
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.6129483171289072
+      },
+      "auroc_newness": 0.6192112029997184,
+      "aupr_newness": 0.24075324177821728,
+      "auroc_energy": 0.6414354630741185,
+      "auroc_dist": 0.49575756228417295,
+      "tag": "val",
+      "tuned_newness_threshold": -1.6129483171289072,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 36,
+    "train": {
+      "loss": 0.5211817071599475,
+      "cls": 0.2916435092940169,
+      "obj": 1.0993643731496176e-05,
+      "energy_in": 0.00046452145001567654,
+      "energy_out": 1.2792983773702503e-05,
+      "proto": 0.9180133509433875,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5291005291005291,
+      "per_class_recall": {
+        "0": 0.7673692427790788,
+        "1": 0.37111801242236025
+      },
+      "unknown_precision": 0.27415966386554624,
+      "unknown_recall": 0.6214285714285714,
+      "binary_accuracy": 0.8919319022945966,
+      "confusion_matrix": [
+        [
+          522,
+          43,
+          275
+        ],
+        [
+          264,
+          983,
+          34
+        ],
+        [
+          1118,
+          97,
+          717
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.6181720440972527
+      },
+      "auroc_newness": 0.6106666740770382,
+      "aupr_newness": 0.23667656981501295,
+      "auroc_energy": 0.6353089383901709,
+      "auroc_dist": 0.4854526995983578,
+      "tag": "val",
+      "tuned_newness_threshold": -1.6181720440972527,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  },
+  {
+    "epoch": 37,
+    "train": {
+      "loss": 0.5236076045844514,
+      "cls": 0.29350347084514167,
+      "obj": 1.1555235826146939e-05,
+      "energy_in": 0.0005081240385894467,
+      "energy_out": 2.5289589168782403e-05,
+      "proto": 0.9202636288384259,
+      "vos": 0.0,
+      "energy_rank": 0.0
+    },
+    "val": {
+      "known_recall": 0.5343915343915344,
+      "per_class_recall": {
+        "0": 0.7540983606557377,
+        "1": 0.3887163561076605
+      },
+      "unknown_precision": 0.2751463544438531,
+      "unknown_recall": 0.6154761904761905,
+      "binary_accuracy": 0.8887244016777696,
+      "confusion_matrix": [
+        [
+          517,
+          38,
+          285
+        ],
+        [
+          279,
+          966,
+          36
+        ],
+        [
+          1083,
+          98,
+          751
+        ]
+      ],
+      "labels_order": [
+        -1,
+        0,
+        1
+      ],
+      "operating_point": {
+        "objectness_threshold": 0.5,
+        "newness_threshold": -1.615170870247127
+      },
+      "auroc_newness": 0.6105779348776548,
+      "aupr_newness": 0.23662009617858204,
+      "auroc_energy": 0.6318525558371496,
+      "auroc_dist": 0.4879322099210055,
+      "tag": "val",
+      "tuned_newness_threshold": -1.615170870247127,
+      "threshold_selection_mode": "blended_fallback"
+    }
+  }
+]

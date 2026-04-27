@@ -1,0 +1,86 @@
+{
+  "val": {
+    "known_recall": 0.8023653906006847,
+    "per_class_recall": {
+      "0": 0.8555815768930523,
+      "1": 0.7670807453416149
+    },
+    "unknown_precision": 0.4831168831168831,
+    "unknown_recall": 0.22142857142857142,
+    "binary_accuracy": 0.8793486306439674,
+    "confusion_matrix": [
+      [
+        186,
+        52,
+        602
+      ],
+      [
+        1,
+        1096,
+        184
+      ],
+      [
+        198,
+        252,
+        1482
+      ]
+    ],
+    "labels_order": [
+      -1,
+      0,
+      1
+    ],
+    "operating_point": {
+      "objectness_threshold": 0.5,
+      "newness_threshold": -1.431948349062002
+    },
+    "auroc_newness": 0.7505624472011027,
+    "aupr_newness": 0.4421461265916166,
+    "auroc_energy": 0.7524802513598031,
+    "auroc_dist": 0.6369110607205846,
+    "tuned_newness_threshold": -1.431948349062002,
+    "threshold_selection_mode": "meets_known_and_precision"
+  },
+  "test": {
+    "known_recall": 0.8011204481792717,
+    "per_class_recall": {
+      "0": 0.8524590163934426,
+      "1": 0.7670807453416149
+    },
+    "unknown_precision": 0.4431137724550898,
+    "unknown_recall": 0.1761904761904762,
+    "binary_accuracy": 0.8761411300271403,
+    "confusion_matrix": [
+      [
+        148,
+        49,
+        643
+      ],
+      [
+        0,
+        1092,
+        189
+      ],
+      [
+        186,
+        264,
+        1482
+      ]
+    ],
+    "labels_order": [
+      -1,
+      0,
+      1
+    ],
+    "operating_point": {
+      "objectness_threshold": 0.5,
+      "newness_threshold": -1.429231831934467
+    },
+    "auroc_newness": 0.7423150741778193,
+    "aupr_newness": 0.4186235241003523,
+    "auroc_energy": 0.7476562847361167,
+    "auroc_dist": 0.6269650452773703,
+    "tuned_newness_threshold": -1.429231831934467,
+    "threshold_selection_mode": "meets_known_and_precision"
+  }
+}

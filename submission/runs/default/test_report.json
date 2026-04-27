@@ -1,0 +1,43 @@
+{
+  "known_recall": 0.8032990974167444,
+  "per_class_recall": {
+    "0": 0.8306010928961749,
+    "1": 0.7851966873706004
+  },
+  "unknown_precision": 0.43595505617977526,
+  "unknown_recall": 0.23095238095238096,
+  "binary_accuracy": 0.8919319022945966,
+  "confusion_matrix": [
+    [
+      194,
+      51,
+      595
+    ],
+    [
+      6,
+      1064,
+      211
+    ],
+    [
+      245,
+      170,
+      1517
+    ]
+  ],
+  "labels_order": [
+    -1,
+    0,
+    1
+  ],
+  "operating_point": {
+    "objectness_threshold": 0.5,
+    "newness_threshold": -1.497143646276222
+  },
+  "auroc_newness": 0.7058593807893527,
+  "aupr_newness": 0.37085341408009087,
+  "auroc_energy": 0.6868958694588946,
+  "auroc_dist": 0.5666196108072858,
+  "tag": "test",
+  "tuned_newness_threshold": -1.497143646276222,
+  "threshold_selection_mode": "val_tuned:meets_known_and_precision"
+}

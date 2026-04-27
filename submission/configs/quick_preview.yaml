@@ -1,0 +1,52 @@
+# Fast local preview config for rapid A/B checks before full server training.
+# Keeps open-world setup but cuts workload heavily.
+
+seed: 42
+device: auto
+
+data:
+  mat_path: data/raw/dataset_a.mat
+  labels_csv: data/processed/labels_with_tool_class.csv
+  window_size: 64
+  stride: 512
+  drop_bad_cuts: [17, 94]
+  known_classes: [0, 1]
+  unknown_classes: [2]
+  val_fraction: 0.15
+  test_fraction: 0.15
+  batch_size: 64
+  num_workers: 0
+
+model:
+  in_channels: 6
+  patch_size: 8
+  d_model: 64
+  n_heads: 4
+  n_encoder_layers: 2
+  n_decoder_layers: 1
+  num_queries: 4
+  dropout: 0.1
+  pam_prototypes_per_class: 2
+  pam_proto_dim: 64
+  energy_temperature: 1.0
+  fusion_alpha: 0.5
+  objectness_threshold: 0.5
+  newness_threshold: 0.0
+
+training:
+  epochs: 3
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  warmup_epochs: 1
+  grad_clip: 1.0
+  w_class: 1.0
+  w_objectness: 1.0
+  w_energy: 0.02
+  w_proto: 0.25
+  energy_m_in: -4.5
+  energy_m_out: -2.0
+  proto_ema: 0.9
+  target_unknown_precision: 0.35
+  target_known_recall: 0.80
+  log_every: 10
+  ckpt_dir: runs/quick_preview
