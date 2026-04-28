@@ -60,7 +60,11 @@ class StudentModel:
             fusion_msp=float(self.cfg.model.get("fusion_msp", 0.0)),
         ).to(self.device)
 
-        state = torch.load(self.checkpoint_path, map_location=self.device)
+        state = torch.load(
+            self.checkpoint_path,
+            map_location=self.device,
+            weights_only=False,
+        )
         model_state = state.get("model_state", state)
         self.model.load_state_dict(model_state)
         self.model.eval()
