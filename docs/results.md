@@ -1,7 +1,8 @@
 # Results
 
-Final metrics from the saved `best_ema.pt` checkpoint in the original
-submission package.
+See the full final report at [`docs/report/final-report.pdf`](report/final-report.pdf).
+
+Final metrics from the saved `best_ema.pt` checkpoint.
 
 | Metric | Value |
 | --- | ---: |
