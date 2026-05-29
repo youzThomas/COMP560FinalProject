@@ -1,6 +1,7 @@
 # Open-World Tool-Wear Newness Detection
 
 **University of North Carolina at Chapel Hill**
+
 **COMP 560 Final Project**  
 **Author:** Thomas You, Yuyang Deng, Junyi Zhang  
 **Task:** Open-world recognition for multi-channel mill tool-wear sensor data  
