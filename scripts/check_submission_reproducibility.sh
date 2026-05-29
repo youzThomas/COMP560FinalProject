@@ -8,7 +8,7 @@ Usage: scripts/check_submission_reproducibility.sh [options]
 Tests the submission package in an isolated temporary directory.
 
 Options:
-  --source DIR          Submission directory to test (default: submission)
+  --source DIR          Submission directory to test (default: artifacts/submission)
   --python PYTHON      Python executable for creating the venv (default: python3)
   --tolerance FLOAT    Metric comparison tolerance (default: 1e-6)
   --skip-install       Do not run pip install -r requirements.txt
@@ -27,7 +27,7 @@ No training is run. The optional --full-sweep flag adds:
 EOF
 }
 
-SOURCE_DIR="submission"
+SOURCE_DIR="artifacts/submission"
 PYTHON_BIN="python3"
 TOLERANCE="1e-6"
 SKIP_INSTALL=0

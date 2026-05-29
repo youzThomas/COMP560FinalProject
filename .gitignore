@@ -1,1 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+.venv_preview/
+
+# OS/editor
+.DS_Store
+.ipynb_checkpoints/
+
+# Logs and generated outputs
 logs/
+result/
+runs/
+*.out
+
+# Model artifacts
+*.pt
+*.ckpt
+
+# Data artifacts
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/README.md
+
+# Packaged submissions and temporary workspaces
+submission/
+submission.zip
+artifacts/
+tmp_*/
