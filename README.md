@@ -3,6 +3,7 @@
 **University of North Carolina at Chapel Hill**
 
 **COMP 560 Artificial Intelligence - Final Project**  
+**Mentored by:** [Prof. Tianlong Chen](https://tianlong-chen.github.io)  
 **Author:** Thomas You, Yuyang Deng, Junyi Zhang  
 **Task:** Open-world recognition for multi-channel mill tool-wear sensor data  
 **Report:** [`docs/report/final-report.pdf`](docs/report/final-report.pdf)
