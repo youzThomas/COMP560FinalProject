@@ -2,7 +2,7 @@
 
 **University of North Carolina at Chapel Hill**
 
-**COMP 560 Final Project**  
+**COMP 560 Artificial Intelligence - Final Project**  
 **Author:** Thomas You, Yuyang Deng, Junyi Zhang  
 **Task:** Open-world recognition for multi-channel mill tool-wear sensor data  
 **Report:** [`docs/report/final-report.pdf`](docs/report/final-report.pdf)
